@@ -13,18 +13,12 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          // child: Text(
-          //   'Hello World!',
-          //   style: GoogleFonts.poppins(
-          //     fontSize: 24,
-          //     fontWeight: FontWeight.w800,
-          //   ),
-          // ),
-          child: Image.asset(
-            'assets/images/Home_image.jpg',
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            fit: BoxFit.cover,
+          child: Text(
+            'Hello World!',
+            style: GoogleFonts.poppins(
+              fontSize: 24,
+              fontWeight: FontWeight.w800,
+            ),
           ),
         ),
       ),
