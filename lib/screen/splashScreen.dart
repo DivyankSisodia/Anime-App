@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:anime_app/utils/constants/sizes.dart';
+import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import '../utils/constants/colors.dart';
@@ -27,12 +28,7 @@ class SplashScreen extends StatelessWidget {
           const Center(
             child: Text(
               DTexts.splashTitle,
-              style: TextStyle(
-                color: DColors.splashColor,
-                fontSize: 40,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w900,
-              ),
+              style: DStyle.mainHeading
             ),
           ),
           Positioned(
@@ -48,12 +44,7 @@ class SplashScreen extends StatelessWidget {
               child: const Center(
                 child: Text(
                   DTexts.loginButtonText,
-                  style: TextStyle(
-                    color: DColors.textlightColor,
-                    fontSize: 20,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: DStyle.lightbuttonText
                 ),
               ),
             ),
@@ -71,12 +62,7 @@ class SplashScreen extends StatelessWidget {
               child: const Center(
                 child: Text(
                   DTexts.signUpButtonText,
-                  style: TextStyle(
-                    color: DColors.backgroundColor,
-                    fontSize: 20,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: DStyle.darkbuttonText
                 ),
               ),
             ),
