@@ -1,6 +1,6 @@
 class DTexts {
   // Splash Screen
-  static const String splashTitle = "Otaku Hub";
+  static const String splashTitle = "Otaku Hub.";
 
   // buttons text
   static const String loginButtonText = "Login";
@@ -36,6 +36,7 @@ class DTexts {
   static const String anime = "Anime";
   static const String manga = "Manga";
   static const String merch = "Merch";
+  static const String skip = "Skip";
   static const String download = "Download";
   static const String chapters = "Chapters";
   static const String readchap = "Read Ch1";
