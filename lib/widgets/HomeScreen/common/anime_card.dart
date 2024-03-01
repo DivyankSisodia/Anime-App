@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:anime_app/model/anime_model.dart';
+import '../../../model/anime_model.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/style.dart';
 

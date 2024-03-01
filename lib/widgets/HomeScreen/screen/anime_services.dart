@@ -7,11 +7,12 @@ import '../../../utils/constants/text_strings.dart';
 import '../common/card_container.dart';
 import '../common/text_heading.dart';
 import '../common/view_all_heading.dart';
+import 'data/popular_anime_card.dart';
 
 class AnimeServices extends ConsumerWidget {
   const AnimeServices({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,7 +21,7 @@ class AnimeServices extends ConsumerWidget {
       child: Align(
         alignment: Alignment.topLeft,
         child: SingleChildScrollView(
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,11 +29,11 @@ class AnimeServices extends ConsumerWidget {
               TitleORHeading(
                   title: DTexts.freeToWatch, fontstyle: DStyle.mediumHeading),
               Gap(10),
-              DisplayCardContainer(),
+              DisplayCardContainer(), // For trending anime
               Gap(15),
               viewAllHeading(),
               Gap(10),
-              DisplayCardContainer(),
+              PopularAnimeCard(), // For top upcoming anime
             ],
           ),
         ),

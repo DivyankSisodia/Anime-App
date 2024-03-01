@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,8 +7,8 @@ import '../../../../utils/helper/helper_functions.dart';
 import '../../common/anime_card.dart';
 import '../../common/loading_effect.dart';
 
-class CardsInfo extends ConsumerWidget {
-  const CardsInfo({
+class PopularAnimeCard extends ConsumerWidget {
+  const PopularAnimeCard({
     super.key,
   });
 
@@ -17,7 +16,7 @@ class CardsInfo extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Consumer(
       builder: (context, watch, child) {
-        final animeList = ref.watch(animeListProvider);
+        final animeList = ref.watch(topAnimeListProvider);
         return animeList.when(
           data: (animeData) {
             return Container(

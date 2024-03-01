@@ -1,9 +1,10 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../screen/data/card_info.dart';
+import '../screen/data/trending_card_info.dart';
 
 class DisplayCardContainer extends ConsumerWidget {
+
   const DisplayCardContainer({
     super.key,
   });
@@ -11,8 +12,8 @@ class DisplayCardContainer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: CardsInfo(),
+      padding:  EdgeInsets.symmetric(horizontal: 20.0),
+      child: TrendingAnimeCard(),
     );
   }
 }
