@@ -6,8 +6,8 @@ import 'package:gap/gap.dart';
 
 import '../utils/constants/colors.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +37,11 @@ class LoginScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Gap(70),
+                    const Gap(60),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 15.0),
                       child: Text(
-                        DTexts.loginHeading,
+                        DTexts.signUpHeading,
                         style: TextStyle(
                           color: DColors.textFieldColor,
                           fontSize: 35,
@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      DTexts.loginSubHeading,
+                      DTexts.signUpSubHeading,
                       style: TextStyle(
                         color: DColors.buttonColor,
                         fontSize: 15,
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const Gap(60),
+                    const Gap(50),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Column(
@@ -118,35 +118,52 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                          const Gap(20),
+                          SizedBox(
+                            height: 50,
+                            width: double.infinity,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                filled: true,
+                                fillColor: DColors.textFieldColor,
+                                hintText: DTexts.confirmPasswordSignUp,
+                                suffixIcon: IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.visibility,
+                                    color: DColors.primaryColor,
+                                  ),
+                                ),
+                                hintStyle: const TextStyle(
+                                  color: DColors.textSecondaryColor,
+                                  fontSize: 13,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Row(
-                            children: [
-                              Checkbox.adaptive(
-                                value: true,
-                                onChanged: (value) {},
-                                splashRadius: 20,
-                              ),
-                              const Text(
-                                DTexts.remember,
-                                style: TextStyle(
-                                  color: DColors.textFieldColor,
-                                  fontSize: 13,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
+                          Checkbox.adaptive(
+                            value: true,
+                            onChanged: (value) {},
+                            splashRadius: 20,
                           ),
                           const Text(
-                            DTexts.forgotPassword,
+                            DTexts.remember,
                             style: TextStyle(
                               color: DColors.textFieldColor,
                               fontSize: 13,
@@ -157,7 +174,7 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Gap(30),
+                    const Gap(25),
                     SizedBox(
                       height: 50,
                       width: MediaQuery.of(context).size.width * 0.6,
@@ -185,7 +202,7 @@ class LoginScreen extends StatelessWidget {
                       DTexts.existingUser,
                       style: DStyle.smallHeadingText,
                     ),
-                    const Gap(30),
+                    const Gap(25),
                     const Text(
                       DTexts.or,
                       style: TextStyle(
