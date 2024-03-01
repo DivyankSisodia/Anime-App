@@ -23,4 +23,7 @@ class DColors {
 
   // text field color
   static const Color textFieldColor = Color(0xFFFFFDFD);
+
+  // pure white
+  static const Color pureWhite = Color(0xFFFFFFFF);
 }

@@ -1,7 +1,9 @@
+import 'package:anime_app/screen/signup_screen.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import '../utils/constants/colors.dart';
@@ -181,9 +183,19 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     const Gap(8),
-                    const Text(
-                      DTexts.existingUser,
-                      style: DStyle.smallHeadingText,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        DTexts.existingUser,
+                        style: DStyle.smallHeadingText,
+                      ),
                     ),
                     const Gap(30),
                     const Text(
