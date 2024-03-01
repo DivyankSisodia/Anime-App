@@ -64,4 +64,6 @@ class DTexts {
   static const String browse = "Browse";
   static const String newList = "Create New List";
   static const String freeToWatch = "Free To Watch";
+  static const String popular = "Popular";
+  static const String seeAll = "See all";
 }
