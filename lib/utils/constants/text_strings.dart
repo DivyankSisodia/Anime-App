@@ -63,4 +63,5 @@ class DTexts {
   static const String logout = "Logout";
   static const String browse = "Browse";
   static const String newList = "Create New List";
+  static const String freeToWatch = "Free To Watch";
 }

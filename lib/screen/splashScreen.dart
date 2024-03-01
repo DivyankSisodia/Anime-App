@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
             color: Colors.black.withOpacity(0.8),
           ),
           const Center(
-            child: Text(DTexts.splashTitle, style: DStyle.mainHeading),
+            child: Text(DTexts.splashTitle, style: DStyle.largeHeading),
           ),
           Positioned(
             bottom: DHelperFunctions.screenHeight(context) * 0.25,

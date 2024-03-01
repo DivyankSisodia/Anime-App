@@ -13,6 +13,7 @@ class AppHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: DColors.backgroundColor,
       body: Column(
         children: [
           Expanded(
@@ -150,8 +151,28 @@ class AppHomeScreen extends StatelessWidget {
           ),
           Expanded(
             flex: 4,
-            child: Container(
-              color: DColors.backgroundColor,
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text(
+                        DTexts.freeToWatch,
+                        style: DStyle.mediumHeading,
+                      ),
+                    ),
+                    Container(
+                      height: 20,
+                      width: 100,
+                      color: DColors.lightColor,
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ],
