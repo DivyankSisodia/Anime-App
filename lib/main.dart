@@ -1,8 +1,6 @@
 import 'package:anime_app/bottom_navbar.dart';
-import 'package:anime_app/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
@@ -13,8 +11,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home:  SearchScreen(),
+    return MaterialApp(
+      home: CustomBottomNavbar(),
     );
   }
 }
