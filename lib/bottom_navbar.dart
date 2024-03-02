@@ -41,7 +41,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                     )
                   : Image.asset(
                       'assets/icons/Home.png',
-                      color: DColors.lightColor,
+                      color: DColors.textColor,
                     ),
               label: '',
             ),
@@ -51,8 +51,10 @@ class CustomBottomNavbar extends ConsumerWidget {
                       'assets/icons/Bookmark.png',
                       color: DColors.pureWhite,
                     )
-                  : Image.asset('assets/icons/Bookmark.png',
-                      color: DColors.lightColor),
+                  : Image.asset(
+                      'assets/icons/Bookmark.png',
+                      color: DColors.textColor,
+                    ),
               label: 'Favourites',
             ),
             BottomNavigationBarItem(
@@ -63,7 +65,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                     )
                   : Image.asset(
                       'assets/icons/Book Stack.png',
-                      color: DColors.lightColor,
+                      color: DColors.textColor,
                     ),
               label: 'Search',
             ),
@@ -75,7 +77,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                     )
                   : Image.asset(
                       'assets/icons/Male User.png',
-                      color: DColors.lightColor,
+                      color: DColors.textColor,
                     ),
               label: 'Profile',
             ),
