@@ -1,9 +1,10 @@
+import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
-import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/style.dart';
-import '../../../utils/constants/text_strings.dart';
+import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/style.dart';
+import '../../../../utils/constants/text_strings.dart';
+import 'banner_carousel.dart';
 
 class HomeBanner extends StatelessWidget {
   const HomeBanner({
@@ -13,16 +14,13 @@ class HomeBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 6,
+      flex: 5,
       child: SizedBox(
+        height: DHelperFunctions.screenHeight(context) * 0.6,
         width: double.infinity,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/images/home_image.png',
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
+            const HomeBannerCarousel(),
             Positioned(
               bottom: 80,
               left: 10,
@@ -147,3 +145,4 @@ class HomeBanner extends StatelessWidget {
     );
   }
 }
+
