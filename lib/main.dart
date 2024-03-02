@@ -1,4 +1,5 @@
 import 'package:anime_app/bottom_navbar.dart';
+import 'package:anime_app/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,8 +13,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CustomBottomNavbar(),
+    return const MaterialApp(
+      home:  SearchScreen(),
     );
   }
 }

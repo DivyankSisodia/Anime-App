@@ -16,7 +16,7 @@ class ApiServices {
     }
   }
 
-  Future<List<Anime>> getUpcomingTopAnime() async {
+  Future<List<Anime>> geTopAiringAnime() async {
     Response response = await get(Uri.parse(animeUrl));
 
     print('aagya andar');
@@ -29,4 +29,6 @@ class ApiServices {
       throw Exception(response.reasonPhrase);
     }
   }
+
+  
 }

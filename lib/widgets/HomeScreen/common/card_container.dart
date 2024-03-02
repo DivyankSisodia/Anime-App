@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../screen/data/trending_card_info.dart';
+import '../view/data/trending_card_info.dart';
 
 class DisplayCardContainer extends ConsumerWidget {
 
