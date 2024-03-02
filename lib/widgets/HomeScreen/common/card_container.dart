@@ -11,9 +11,6 @@ class DisplayCardContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 20.0),
-      child: TrendingAnimeCard(),
-    );
+    return const TrendingAnimeCard();
   }
 }
