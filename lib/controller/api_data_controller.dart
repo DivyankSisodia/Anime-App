@@ -18,3 +18,9 @@ final topAnimeListProvider =
   final anime = ref.read(animeProvider);
   return anime.geTopAiringAnime();
 });
+
+final spotLightProvider =
+    FutureProvider.autoDispose<List<Anime>>((ref) async {
+  final anime = ref.read(animeProvider);
+  return anime.getSpotlightAnime();
+});
