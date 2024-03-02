@@ -6,6 +6,7 @@ class DColors {
   static const primaryColor = Color(0xFF393053);
   static const secondaryColor = Color.fromARGB(255, 64, 55, 105);
   static const lightColor = Color(0xFF635985);
+  static const lighterColor = Color.fromARGB(255, 145, 130, 195);
   static const splashColor = Color.fromARGB(255, 203, 195, 224);
   static const buttonColor = Color(0xFFE5E5E5);
 

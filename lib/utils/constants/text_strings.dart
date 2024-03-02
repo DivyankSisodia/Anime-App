@@ -66,4 +66,7 @@ class DTexts {
   static const String freeToWatch = "Free To Watch";
   static const String popular = "Popular";
   static const String seeAll = "See all";
+  static const String search = "Search..";
+  static const String trending = "Trending..";
+
 }

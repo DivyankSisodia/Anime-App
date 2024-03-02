@@ -65,4 +65,21 @@ class DStyle {
     fontWeight: FontWeight.w400,
   );
 
+  static const smalllightbuttonDarkFontText = TextStyle(
+    color: DColors.pureWhite,
+    fontSize: 18,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+
+  static final highlightedText = const TextStyle(
+    color: Colors.blueAccent,
+    fontSize: 15,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  ).copyWith(
+    decoration: TextDecoration.underline,
+    decorationColor: Colors.blueAccent,
+    decorationThickness: 3,
+  );
 }
