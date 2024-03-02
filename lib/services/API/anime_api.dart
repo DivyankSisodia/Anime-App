@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../../model/anime_model.dart';
 
@@ -16,19 +17,31 @@ class ApiServices {
     }
   }
 
-  Future<List<Anime>> geTopAiringAnime() async {
+  Future<List<Anime>> getSpotlightAnime() async {
     Response response = await get(Uri.parse(animeUrl));
 
-    print('aagya andar');
+    debugPrint('aagya andar');
 
     if (response.statusCode == 200) {
-      final List<dynamic> result = jsonDecode(response.body)['topAiringAnimes'];
-      print(result);
+      final List<dynamic> result = jsonDecode(response.body)['spotlightAnimes'];
+      debugPrint('result');
       return result.map((e) => Anime.fromJson(e)).toList();
     } else {
       throw Exception(response.reasonPhrase);
     }
   }
 
-  
+  Future<List<Anime>> geTopAiringAnime() async {
+    Response response = await get(Uri.parse(animeUrl));
+
+    debugPrint('aagya andar');
+
+    if (response.statusCode == 200) {
+      final List<dynamic> result = jsonDecode(response.body)['topAiringAnimes'];
+      debugPrint('result');
+      return result.map((e) => Anime.fromJson(e)).toList();
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
+  }
 }
