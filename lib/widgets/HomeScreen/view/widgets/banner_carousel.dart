@@ -39,7 +39,7 @@ class HomeBannerCarousel extends StatelessWidget {
       ],
       options: CarouselOptions(
         autoPlay: true,
-        aspectRatio: 1,
+        aspectRatio: 0.8,
         enlargeCenterPage: false,
         viewportFraction: 9 / 9,
         autoPlayInterval: const Duration(seconds: 4),
