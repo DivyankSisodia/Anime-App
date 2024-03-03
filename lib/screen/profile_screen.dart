@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
     _animationController.forward(); // Start the animation
   }
-
+  
   @override
   void dispose() {
     _animationController.dispose();
