@@ -5,6 +5,7 @@ class DTexts {
   // buttons text
   static const String loginButtonText = "Login";
   static const String signUpButtonText = "Sign Up";
+  static const String signout = "Sign Out";
 
   // login screen
   static const String loginHeading = "Welcome Back!";
@@ -68,5 +69,19 @@ class DTexts {
   static const String seeAll = "See all";
   static const String search = "Search..";
   static const String trending = "Trending..";
+
+
+  // profile section texts
+  static const String profile = "Profile";
+  static const String membership = "Membership Plan";
+  static const String  changeEmail = "Change Email";
+  static const String changePassword = "Change Password";
+  static const String preferences = "Preferences";
+  static const String subtitleLang = "Subtitle Language";
+  static const String appLang = "English";
+  static const String mobileData = "Stream using cellular data";
+  static const String matureContent = "Show mature content";
+  static const String lang = "japanese";
+  static const String audioLang = "Audio Language";
 
 }
