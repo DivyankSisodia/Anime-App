@@ -32,12 +32,14 @@ class SpotlightAnimeCard extends ConsumerWidget {
                   final anime = animeData[index];
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AnimeDetailScreen(anime: anime),
-                        ),
-                      );
+                      Navigator.push(context, PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryanimation) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: AnimeDetailScreen(anime: anime),
+                          );
+                        },
+                      ));
                     },
                     child: AnimeCard(anime: anime),
                   );

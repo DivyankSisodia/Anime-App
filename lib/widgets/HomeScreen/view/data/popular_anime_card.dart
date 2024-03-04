@@ -19,18 +19,21 @@ class PopularAnimeCard extends ConsumerWidget {
         final animeList = ref.watch(topAnimeListProvider);
         return animeList.when(
           data: (animeData) {
-            return Container(
-              height: DHelperFunctions.screenHeight(context) * 0.209,
-              width: double.infinity,
-              color: DColors.backgroundColor,
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemCount: animeData.length,
-                itemBuilder: (context, index) {
-                  final anime = animeData[index];
-                  return AnimeCard(anime: anime);
-                },
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 75.0),
+              child: Container(
+                height: DHelperFunctions.screenHeight(context) * 0.209,
+                width: double.infinity,
+                color: DColors.backgroundColor,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: animeData.length,
+                  itemBuilder: (context, index) {
+                    final anime = animeData[index];
+                    return AnimeCard(anime: anime);
+                  },
+                ),
               ),
             );
           },

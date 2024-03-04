@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../controller/manga_api_controller.dart';
@@ -8,7 +7,7 @@ import '../../model/manga_model.dart';
 import '../HomeScreen/common/loading_effect.dart';
 
 class MangaCard extends ConsumerWidget {
-  const MangaCard({Key? key}) : super(key: key);
+  const MangaCard({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

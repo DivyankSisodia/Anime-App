@@ -26,12 +26,11 @@ class AnimeServices extends ConsumerWidget {
           alignment: Alignment.topLeft,
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Gap(20),
                   TitleORHeading(
                     title: DTexts.freeToWatch,
                     fontstyle: DStyle.mediumHeading,
