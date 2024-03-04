@@ -44,6 +44,12 @@ class DStyle {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
   );
+  static const smallboldlightbuttonText = TextStyle(
+    color: DColors.pureWhite,
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w800,
+  );
 
   static const mediumbuttonText = TextStyle(
     color: DColors.textlightColor,

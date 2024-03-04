@@ -1,7 +1,5 @@
-// ignore_for_file: library_private_types_in_public_api
-
-import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
 import 'package:anime_app/model/anime_model.dart';
@@ -9,7 +7,12 @@ import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 
-class AnimeDetailScreen extends StatefulWidget {
+import '../../controller/my_list_controller.dart';
+import '../../utils/helper/helper_functions.dart';
+
+final isExpandedProvider = StateProvider((ref) => false);
+
+class AnimeDetailScreen extends ConsumerWidget {
   const AnimeDetailScreen({
     super.key,
     required this.anime,
@@ -18,14 +21,8 @@ class AnimeDetailScreen extends StatefulWidget {
   final Anime anime;
 
   @override
-  _AnimeDetailScreenState createState() => _AnimeDetailScreenState();
-}
-
-class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
-  bool isexpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isWatched = ref.watch(watchedAnimeProvider);
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
       body: Column(
@@ -39,7 +36,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image(
-                      image: NetworkImage(widget.anime.poster),
+                      image: NetworkImage(anime.poster),
                       fit: BoxFit.cover,
                       height: DHelperFunctions.screenHeight(context) * 0.6,
                     ),
@@ -74,6 +71,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     flex: 7,
                     child: GestureDetector(
                       onTap: () {
+                        ref.read(watchedAnimeProvider.notifier).addToWatched(anime);
                         DHelperFunctions.showSnackBar(
                             context, 'Added to Watched List');
                       },
@@ -158,31 +156,37 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.anime.name,
+                          anime.name,
                           style: DStyle.mediumbuttonText,
                         ),
                         const Gap(10),
                         Text(
-                          widget.anime.jname,
+                          anime.jname,
                           style: DStyle.smallHeading,
                         ),
                         const Gap(10),
-                        Text(
-                          widget.anime.description,
-                          style: DStyle.smalllightbuttonText,
-                          maxLines:
-                              isexpanded ? widget.anime.description.length : 3,
-                          overflow: TextOverflow.ellipsis,
+                        Consumer(
+                          builder: (context, watch, _) {
+                            final isExpanded = ref.watch(isExpandedProvider);
+                            return Text(
+                              anime.description,
+                              style: DStyle.smalllightbuttonText,
+                              maxLines:
+                                  isExpanded ? anime.description.length : 3,
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          },
                         ),
                         const Gap(10),
                         GestureDetector(
                           onTap: () {
-                            setState(() {
-                              isexpanded = !isexpanded;
-                            });
+                            ref.read(isExpandedProvider.notifier).state =
+                                !ref.read(isExpandedProvider.notifier).state;
                           },
                           child: Text(
-                            isexpanded ? "Read Less" : "Read More",
+                            ref.read(isExpandedProvider.notifier).state
+                                ? "Read Less"
+                                : "Read More",
                             style: DStyle.highlightedText,
                           ),
                         ),
