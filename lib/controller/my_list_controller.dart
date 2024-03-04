@@ -16,18 +16,19 @@ class WatchedItemNotifier extends StateNotifier<List<Anime>> {
   // remove Anime from the list
   void removeFromWatched(String id) {
     state = [
-      for(final anime in state)
-        if(anime.id != id) anime
+      for (final anime in state)
+        if (anime.id != id) anime
     ];
   }
 }
 
-final watchedAnimeProvider = StateNotifierProvider<WatchedItemNotifier, List<Anime>>((ref) {
+final watchedAnimeProvider =
+    StateNotifierProvider<WatchedItemNotifier, List<Anime>>((ref) {
   return WatchedItemNotifier();
 });
 
 class UnWatchedItemNotifier extends StateNotifier<List<Anime>> {
-  UnWatchedItemNotifier() : super(watchedAnime);
+  UnWatchedItemNotifier() : super(unwatchedAnime);
 
   // add Anime to the list
   void addToUnWatched(Anime anime) {
