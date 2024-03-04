@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
@@ -7,10 +9,8 @@ import 'package:gap/gap.dart';
 
 import '../widgets/HomeScreen/common/text_heading.dart';
 
-import 'package:flutter/material.dart';
-
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     );
     _animationController.forward(); // Start the animation
   }
-  
+
   @override
   void dispose() {
     _animationController.dispose();
@@ -68,13 +68,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                           fontstyle: DStyle.mediumHeading,
                         ),
                       ),
-                      const Gap(10),
+                      const Gap(8),
                       const CircleAvatar(
-                        radius: 60,
+                        radius: 55,
                         backgroundImage:
                             AssetImage('assets/images/Ellipse 19.png'),
                       ),
-                      const Gap(25),
+                      const Gap(22),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 14.0),
                         child: Container(
@@ -181,12 +181,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                             fontstyle: DStyle.mediumHeading,
                           ),
                         ),
-                        const Gap(15),
+                        const Gap(12),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 14.0),
                           child: Container(
                             height:
-                                DHelperFunctions.screenHeight(context) * 0.22,
+                                DHelperFunctions.screenHeight(context) * 0.21,
                             width: DHelperFunctions.screenWidth(context) * 0.9,
                             decoration: BoxDecoration(
                               color: DColors.lightColor,
@@ -288,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     const Padding(
                                       padding: EdgeInsets.only(left: 16.0),
                                       child: Text(
-                                        DTexts.changePassword,
+                                        DTexts.matureContent,
                                         style: DStyle.smalllightbuttonText,
                                       ),
                                     ),

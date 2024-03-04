@@ -1,4 +1,4 @@
-import 'package:anime_app/screen/detail_page.dart';
+import 'package:anime_app/screen/detail_page/spotlight-anime_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

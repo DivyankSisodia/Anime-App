@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../controller/api_data_controller.dart';
+import '../../../../screen/detail_page/trending_anime_detail_page.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper/helper_functions.dart';
 import '../../common/anime_card.dart';
@@ -30,7 +30,17 @@ class TrendingAnimeCard extends ConsumerWidget {
                 itemCount: animeData.length,
                 itemBuilder: (context, index) {
                   final anime = animeData[index];
-                  return AnimeCard(anime: anime);
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TrendingOrPopularAnimeDetailScreen(anime: anime),
+                        ),
+                      );
+                    },
+                    child: AnimeCard(anime: anime),
+                  );
                 },
               ),
             );

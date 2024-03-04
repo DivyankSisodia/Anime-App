@@ -1,8 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:anime_app/utils/helper/helper_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import 'package:anime_app/model/anime_model.dart';
@@ -12,9 +11,9 @@ import 'package:anime_app/utils/constants/text_strings.dart';
 
 class AnimeDetailScreen extends StatefulWidget {
   const AnimeDetailScreen({
-    Key? key,
+    super.key,
     required this.anime,
-  }) : super(key: key);
+  });
 
   final Anime anime;
 
@@ -42,7 +41,7 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
                     child: Image(
                       image: NetworkImage(widget.anime.poster),
                       fit: BoxFit.cover,
-                      height: MediaQuery.of(context).size.height * 0.6,
+                      height: DHelperFunctions.screenHeight(context) * 0.6,
                     ),
                   ),
                   Positioned(
@@ -62,7 +61,6 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Container(
@@ -195,52 +193,6 @@ class _AnimeDetailScreenState extends State<AnimeDetailScreen> {
               ),
             ),
           ),
-          // Expanded(
-          //   flex: 5,
-          //   child: SingleChildScrollView(
-          //     child: Container(
-          //       color: DColors.backgroundColor,
-          //       child: Padding(
-          //         padding: const EdgeInsets.symmetric(
-          //             horizontal: 20.0, vertical: 10),
-          //         child: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: [
-          //             Text(
-          //               widget.anime.name,
-          //               style: DStyle.mediumbuttonText,
-          //             ),
-          //             const Gap(10),
-          //             Text(
-          //               widget.anime.jname,
-          //               style: DStyle.smallHeading,
-          //             ),
-          //             const Gap(10),
-          //             Text(
-          //               widget.anime.description,
-          //               style: DStyle.smalllightbuttonText,
-          //               maxLines:
-          //                   isexpanded ? widget.anime.description.length : 5,
-          //               overflow: TextOverflow.ellipsis,
-          //             ),
-          //             const Gap(10),
-          //             GestureDetector(
-          //               onTap: () {
-          //                 setState(() {
-          //                   isexpanded = !isexpanded;
-          //                 });
-          //               },
-          //               child: Text(
-          //                 isexpanded ? "Read Less" : "Read More",
-          //                 style: DStyle.highlightedText,
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // )
         ],
       ),
     );

@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/anime_model.dart';
 
 // Provider for the API service
-final animeProvider = Provider<ApiServices>((ref) => ApiServices());
+final animeProvider = Provider<AnimeServices>((ref) => AnimeServices());
 
 // Provider for caching the trending anime data
 final cachedTrendingAnimeProvider = StateProvider<List<Anime>>((ref) => []);

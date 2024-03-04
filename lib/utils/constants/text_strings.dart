@@ -38,6 +38,7 @@ class DTexts {
   static const String manga = "Manga";
   static const String merch = "Merch";
   static const String skip = "Skip";
+  static const String rank = "Ranking : ";
   static const String download = "Download";
   static const String chapters = "Chapters";
   static const String readchap = "Read Ch1";
@@ -70,11 +71,10 @@ class DTexts {
   static const String search = "Search..";
   static const String trending = "Trending..";
 
-
   // profile section texts
   static const String profile = "Profile";
   static const String membership = "Membership Plan";
-  static const String  changeEmail = "Change Email";
+  static const String changeEmail = "Change Email";
   static const String changePassword = "Change Password";
   static const String preferences = "Preferences";
   static const String subtitleLang = "Subtitle Language";
@@ -83,5 +83,4 @@ class DTexts {
   static const String matureContent = "Show mature content";
   static const String lang = "japanese";
   static const String audioLang = "Audio Language";
-
 }

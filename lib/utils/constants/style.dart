@@ -9,6 +9,14 @@ class DStyle {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w900,
   );
+
+  static const mediumlargeHeading = TextStyle(
+    color: DColors.pureWhite,
+    fontSize: 30,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w700,
+  );
+
   static const mediumHeading = TextStyle(
     color: DColors.pureWhite,
     fontSize: 26,
