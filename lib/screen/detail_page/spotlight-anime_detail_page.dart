@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -10,7 +12,8 @@ import 'package:anime_app/utils/constants/text_strings.dart';
 import '../../controller/my_list_controller.dart';
 import '../../utils/helper/helper_functions.dart';
 
-final isExpandedProvider = StateProvider((ref) => false);
+final isDescExpandedProvider = StateProvider((ref) => false);
+final isJTitleExpandedProvider = StateProvider((ref) => false);
 
 class AnimeDetailScreen extends ConsumerWidget {
   const AnimeDetailScreen({
@@ -22,7 +25,6 @@ class AnimeDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isWatched = ref.watch(watchedAnimeProvider);
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
       body: Column(
@@ -33,12 +35,15 @@ class AnimeDetailScreen extends ConsumerWidget {
               padding: const EdgeInsets.only(top: 30.0, left: 20, right: 20),
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image(
-                      image: NetworkImage(anime.poster),
-                      fit: BoxFit.cover,
-                      height: DHelperFunctions.screenHeight(context) * 0.6,
+                  Hero(
+                    tag: '${anime.name}-${anime.id}',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image(
+                        image: NetworkImage(anime.poster),
+                        fit: BoxFit.cover,
+                        height: DHelperFunctions.screenHeight(context) * 0.6,
+                      ),
                     ),
                   ),
                   Positioned(
@@ -71,7 +76,9 @@ class AnimeDetailScreen extends ConsumerWidget {
                     flex: 7,
                     child: GestureDetector(
                       onTap: () {
-                        ref.read(watchedAnimeProvider.notifier).addToWatched(anime);
+                        ref
+                            .read(watchedAnimeProvider.notifier)
+                            .addToWatched(anime);
                         DHelperFunctions.showSnackBar(
                             context, 'Added to Watched List');
                       },
@@ -93,16 +100,25 @@ class AnimeDetailScreen extends ConsumerWidget {
                   const Gap(10),
                   Expanded(
                     flex: 8,
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: DColors.lighterColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          DTexts.unWatched,
-                          style: DStyle.smalllightbuttonDarkFontText,
+                    child: GestureDetector(
+                      onTap: () {
+                        ref
+                            .read(unWatchedAnimeProvider.notifier)
+                            .addToUnWatched(anime);
+                        DHelperFunctions.showSnackBar(
+                            context, 'Added to Watched List');
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: DColors.lighterColor,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            DTexts.unWatched,
+                            style: DStyle.smalllightbuttonDarkFontText,
+                          ),
                         ),
                       ),
                     ),
@@ -167,12 +183,13 @@ class AnimeDetailScreen extends ConsumerWidget {
                         const Gap(10),
                         Consumer(
                           builder: (context, watch, _) {
-                            final isExpanded = ref.watch(isExpandedProvider);
+                            final isDescExpanded =
+                                ref.watch(isDescExpandedProvider);
                             return Text(
                               anime.description,
                               style: DStyle.smalllightbuttonText,
                               maxLines:
-                                  isExpanded ? anime.description.length : 3,
+                                  isDescExpanded ? anime.description.length : 3,
                               overflow: TextOverflow.ellipsis,
                             );
                           },
@@ -180,11 +197,13 @@ class AnimeDetailScreen extends ConsumerWidget {
                         const Gap(10),
                         GestureDetector(
                           onTap: () {
-                            ref.read(isExpandedProvider.notifier).state =
-                                !ref.read(isExpandedProvider.notifier).state;
+                            ref.read(isDescExpandedProvider.notifier).state =
+                                !ref
+                                    .read(isDescExpandedProvider.notifier)
+                                    .state;
                           },
                           child: Text(
-                            ref.read(isExpandedProvider.notifier).state
+                            ref.read(isDescExpandedProvider.notifier).state
                                 ? "Read Less"
                                 : "Read More",
                             style: DStyle.highlightedText,

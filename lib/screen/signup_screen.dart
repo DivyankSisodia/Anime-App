@@ -3,7 +3,6 @@ import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import '../utils/constants/colors.dart';

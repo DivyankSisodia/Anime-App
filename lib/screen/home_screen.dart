@@ -1,3 +1,4 @@
+import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,22 +11,23 @@ class AppHomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: DColors.backgroundColor,
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: DHelperFunctions.screenHeight(context),
+          width: DHelperFunctions.screenWidth(context),
+          child: const Column(
+            children: [
+              // Image banner and buttons
+              HomeBanner(),
 
-          // Image banner and buttons
-          HomeBanner(),
-
-          // Anime lists from API and their categories
-          AnimeServices(),
-        ],
+              // Anime lists from API and their categories
+              AnimeServices(),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
-
-
-
-

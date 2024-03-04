@@ -1,9 +1,8 @@
-import 'package:anime_app/screen/signup_screen.dart';
+import 'package:anime_app/bottom_navbar.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import '../utils/constants/colors.dart';
@@ -164,7 +163,14 @@ class LoginScreen extends StatelessWidget {
                       height: 50,
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomBottomNavbar(),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: DColors.lightColor,
                           shape: RoundedRectangleBorder(
@@ -188,7 +194,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignUpScreen(),
+                            builder: (context) => CustomBottomNavbar(),
                           ),
                         );
                       },
