@@ -4,21 +4,21 @@ class DHelperFunctions {
   static void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
         backgroundColor: Colors.green,
         content: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(
                 Icons.check,
                 color: Colors.green,
               ),
             ),
-            SizedBox(width: 8), // Add spacing between icon and message
+            const SizedBox(width: 8), // Add spacing between icon and message
             Text(
               message,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
               ),
