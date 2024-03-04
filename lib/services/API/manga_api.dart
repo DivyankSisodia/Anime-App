@@ -5,6 +5,8 @@ import '../../model/manga_model.dart';
 class MangaServices {
   String mangaUrl = 'http://api.jikan.moe/v4/manga';
 
+  // manga data
+
   Future<List<Manga>> getMangaData() async {
     final Response response = await get(Uri.parse(mangaUrl));
     if (response.statusCode == 200) {

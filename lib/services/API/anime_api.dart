@@ -6,6 +6,9 @@ import '../../model/anime_model.dart';
 class AnimeServices {
   String animeUrl = "https://api-aniwatch.onrender.com/anime/home";
 
+
+  // spotlight anime 
+
    Future<List<Anime>> getSpotlightAnime() async {
     Response response = await get(Uri.parse(animeUrl));
     debugPrint('aagya andar');
@@ -19,6 +22,8 @@ class AnimeServices {
     }
   }
 
+  // trending anime
+
   Future<List<Anime>> getTrendingAnime() async {
     Response response = await get(Uri.parse(animeUrl));
 
@@ -29,6 +34,8 @@ class AnimeServices {
       throw Exception(response.reasonPhrase);
     }
   }
+
+  // top airing anime rn
 
   Future<List<Anime>> geTopAiringAnime() async {
     Response response = await get(Uri.parse(animeUrl));
