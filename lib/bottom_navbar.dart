@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'controller/bottom_navbar_controller.dart';
 import 'screen/anime_stack_screen.dart';
-import 'screen/favorite.dart';
+import 'screen/favourites/favorite.dart';
 import 'screen/profile_screen.dart';
 import 'utils/constants/colors.dart';
 
@@ -25,7 +25,8 @@ class CustomBottomNavbar extends ConsumerWidget {
       body: _screens[currentIndex],
       bottomNavigationBar: SizedBox(
         height: 101,
-        child: BottomNavigationBar(
+        child: BottomNavigationBar(  
+          currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
           elevation: 0,
           backgroundColor: DColors.backgroundColor,
@@ -55,7 +56,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                       'assets/icons/Bookmark.png',
                       color: DColors.textColor,
                     ),
-              label: 'Favourites',
+              label: '',
             ),
             BottomNavigationBarItem(
               icon: currentIndex == 2
@@ -67,7 +68,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                       'assets/icons/Book Stack.png',
                       color: DColors.textColor,
                     ),
-              label: 'Search',
+              label: '',
             ),
             BottomNavigationBarItem(
               icon: currentIndex == 3
@@ -79,7 +80,7 @@ class CustomBottomNavbar extends ConsumerWidget {
                       'assets/icons/Male User.png',
                       color: DColors.textColor,
                     ),
-              label: 'Profile',
+              label: '',
             ),
           ],
         ),
