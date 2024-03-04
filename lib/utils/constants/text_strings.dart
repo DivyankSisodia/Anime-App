@@ -54,6 +54,7 @@ class DTexts {
   static const String searchField = "anime, manga...";
   static const String noWatchedContent = "Oops Nothing Here";
   static const String noWatchedContentSub = "Let's add some..";
+  static const String browseAll = "Browse all";
   static const String noUnwatchedContent = "Many shows to watch..";
   static const String noUnwatchedContentSub = "Let's watch some..";
   static const String noDownloadContent = "Nothing here..";
