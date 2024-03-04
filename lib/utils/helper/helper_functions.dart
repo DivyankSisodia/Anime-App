@@ -3,7 +3,29 @@ import 'package:flutter/material.dart';
 class DHelperFunctions {
   static void showSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
+      SnackBar(
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.green,
+        content: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+            ),
+            SizedBox(width: 8), // Add spacing between icon and message
+            Text(
+              message,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -47,5 +69,4 @@ class DHelperFunctions {
   static double screenWidth(BuildContext context) {
     return screenSize(context).width;
   }
-
 }
