@@ -35,30 +35,8 @@ class AnimeDetailScreen extends ConsumerWidget {
               padding: const EdgeInsets.only(top: 30.0, left: 20, right: 20),
               child: Stack(
                 children: [
-                  Hero(
-                    tag: '${anime.name}-${anime.id}',
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        image: NetworkImage(anime.poster),
-                        fit: BoxFit.cover,
-                        height: DHelperFunctions.screenHeight(context) * 0.6,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 30,
-                    right: DHelperFunctions.screenWidth(context) * 0.66,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Image.asset(
-                        'assets/icons/Back To.png',
-                        color: DColors.pureWhite,
-                      ),
-                    ),
-                  ),
+                  AnimeImage(anime: anime),
+                  const BackButton(),
                 ],
               ),
             ),
@@ -72,75 +50,11 @@ class AnimeDetailScreen extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 7,
-                    child: GestureDetector(
-                      onTap: () {
-                        ref
-                            .read(watchedAnimeProvider.notifier)
-                            .addToWatched(anime);
-                        DHelperFunctions.showSnackBar(
-                            context, 'Added to Watched List');
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: DColors.lighterColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            DTexts.watched,
-                            style: DStyle.smalllightbuttonDarkFontText,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  WatchedButton(anime: anime),
                   const Gap(10),
-                  Expanded(
-                    flex: 8,
-                    child: GestureDetector(
-                      onTap: () {
-                        ref
-                            .read(unWatchedAnimeProvider.notifier)
-                            .addToUnWatched(anime);
-                        DHelperFunctions.showSnackBar(
-                            context, 'Added to Watched List');
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: DColors.lighterColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            DTexts.unWatched,
-                            style: DStyle.smalllightbuttonDarkFontText,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  UnWatchedButton(anime: anime),
                   const Gap(10),
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: DColors.lighterColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          DTexts.download,
-                          style: DStyle.smalllightbuttonDarkFontText,
-                        ),
-                      ),
-                    ),
-                  )
+                  const DownloadButton()
                 ],
               ),
             ),
@@ -217,6 +131,155 @@ class AnimeDetailScreen extends ConsumerWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DownloadButton extends StatelessWidget {
+  const DownloadButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 7,
+      child: Container(
+        height: 50,
+        width: 100,
+        decoration: BoxDecoration(
+          color: DColors.lighterColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Center(
+          child: Text(
+            DTexts.download,
+            style: DStyle.smalllightbuttonDarkFontText,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UnWatchedButton extends StatelessWidget {
+  const UnWatchedButton({
+    super.key,
+    required this.anime,
+  });
+
+  final Anime anime;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 8,
+      child: Consumer(
+        builder: (context, ref, child) {
+          return GestureDetector(
+            onTap: () {
+              ref.read(unWatchedAnimeProvider.notifier).addToUnWatched(anime);
+              DHelperFunctions.showSnackBar(context, 'Added to Unwatched List');
+            },
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: DColors.lighterColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  DTexts.unWatched,
+                  style: DStyle.smalllightbuttonDarkFontText,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class WatchedButton extends StatelessWidget {
+  const WatchedButton({
+    super.key,
+    required this.anime,
+  });
+
+  final Anime anime;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 7,
+      child: Consumer(
+        builder: (context, ref, child) {
+          return GestureDetector(
+            onTap: () {
+              ref.read(watchedAnimeProvider.notifier).addToWatched(anime);
+              DHelperFunctions.showSnackBar(context, 'Added to Watched List');
+            },
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: DColors.lighterColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  DTexts.watched,
+                  style: DStyle.smalllightbuttonDarkFontText,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class BackButton extends StatelessWidget {
+  const BackButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 30,
+      right: DHelperFunctions.screenWidth(context) * 0.66,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Image.asset(
+          'assets/icons/Back To.png',
+          color: DColors.pureWhite,
+        ),
+      ),
+    );
+  }
+}
+
+class AnimeImage extends StatelessWidget {
+  const AnimeImage({
+    super.key,
+    required this.anime,
+  });
+
+  final Anime anime;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image(
+        image: NetworkImage(anime.poster),
+        fit: BoxFit.cover,
+        height: DHelperFunctions.screenHeight(context) * 0.6,
       ),
     );
   }

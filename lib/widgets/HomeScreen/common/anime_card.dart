@@ -23,16 +23,13 @@ class AnimeCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Hero(
-              tag: '${anime.name}-${anime.id}',
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                child: Image.network(
-                  anime.poster,
-                  height: 150,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+              child: Image.network(
+                anime.poster,
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
               ),
             ),
             const SizedBox(height: 8.0),

@@ -12,9 +12,12 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: DColors.lightColor,
       appBar: AppBar(
         backgroundColor: DColors.lightColor,
-        leading: Image.asset(
-          'assets/icons/Up Arrow.png',
-          color: Colors.white,
+        leading: GestureDetector(
+          onTap: Navigator.of(context).pop,
+          child: Image.asset(
+            'assets/icons/Up Arrow.png',
+            color: Colors.white,
+          ),
         ),
       ),
       body: const SingleChildScrollView(
@@ -30,4 +33,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

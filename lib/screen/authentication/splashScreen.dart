@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
+import 'package:anime_app/bottom_navbar.dart';
 import 'package:anime_app/utils/constants/sizes.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/helper/helper_functions.dart';
-import '../home_screen/home_screen.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 
@@ -91,7 +91,7 @@ class SplashScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AppHomeScreen(),
+                    builder: (context) => CustomBottomNavbar(),
                   ),
                 );
               },

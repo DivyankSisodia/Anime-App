@@ -31,7 +31,7 @@ class WatchedAnimePage extends ConsumerWidget {
                         height: 150,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: DColors.primaryColor,
+                          color: DColors.searchTileColor,
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: const [
                             BoxShadow(

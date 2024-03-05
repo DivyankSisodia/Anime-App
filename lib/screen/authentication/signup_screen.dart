@@ -12,16 +12,19 @@ class SignUpScreen extends StatelessWidget {
       backgroundColor: DColors.lightColor,
       appBar: AppBar(
         backgroundColor: DColors.lightColor,
-        leading: Image.asset(
-          'assets/icons/Up Arrow.png',
-          color: Colors.white,
+        leading: GestureDetector(
+          onTap: Navigator.of(context).pop,
+          child: Image.asset(
+            'assets/icons/Up Arrow.png',
+            color: Colors.white,
+          ),
         ),
       ),
-      body: const  SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Stack(
           children: [
             Padding(
-              padding:  EdgeInsets.only(top: 15.0),
+              padding: EdgeInsets.only(top: 15.0),
               child: SignUpPageContainer(),
             ),
           ],
@@ -30,4 +33,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-

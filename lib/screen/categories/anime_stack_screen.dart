@@ -18,20 +18,28 @@ class AnimeScreens extends ConsumerWidget {
       child: Scaffold(
         backgroundColor: DColors.backgroundColor,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
+          elevation: 1,
           backgroundColor: DColors.backgroundColor,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Browse',
-                style: DStyle.mediumlargeHeading,
+          flexibleSpace: SizedBox(
+            height: 100,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20, top: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Browse',
+                    style: DStyle.mediumlargeHeading,
+                  ),
+                  Image.asset(
+                    'assets/icons/Search.png',
+                    color: DColors.pureWhite,
+                    width: 70,
+                  )
+                ],
               ),
-              Image.asset(
-                'assets/icons/Search.png',
-                color: DColors.pureWhite,
-                width: 70,
-              )
-            ],
+            ),
           ),
           bottom: const TabBar(
             tabAlignment: TabAlignment.start,
@@ -58,7 +66,7 @@ class AnimeScreens extends ConsumerWidget {
           children: [
             Center(child: Text('Anime', style: DStyle.mediumbuttonText)),
             // Display manga data when available
-            MangaCard(),
+            Center(child: Text('Movies', style: DStyle.mediumbuttonText)),
             Center(child: Text('Merch', style: DStyle.mediumbuttonText)),
           ],
         ),
