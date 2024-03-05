@@ -1,4 +1,4 @@
-import 'package:anime_app/screen/splashScreen.dart';
+import 'package:anime_app/screen/authentication/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

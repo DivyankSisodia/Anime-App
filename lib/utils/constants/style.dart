@@ -10,6 +10,13 @@ class DStyle {
     fontWeight: FontWeight.w900,
   );
 
+  static const loginHeading = TextStyle(
+    color: DColors.textFieldColor,
+    fontSize: 35,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w800,
+  );
+
   static const mediumlargeHeading = TextStyle(
     color: DColors.pureWhite,
     fontSize: 30,
@@ -27,6 +34,13 @@ class DStyle {
   static const smallHeading = TextStyle(
     color: DColors.pureWhite,
     fontSize: 25,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
+
+  static const textField = TextStyle(
+    color: DColors.textSecondaryColor,
+    fontSize: 13,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w400,
   );
@@ -95,5 +109,19 @@ class DStyle {
     decoration: TextDecoration.underline,
     decorationColor: Colors.blueAccent,
     decorationThickness: 3,
+  );
+
+  static const misctext = TextStyle(
+    color: DColors.textFieldColor,
+    fontSize: 13,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const miscText2 = TextStyle(
+    color: DColors.borderPrimary,
+    fontSize: 15,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w200,
   );
 }

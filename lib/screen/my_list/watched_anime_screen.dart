@@ -6,14 +6,14 @@ import 'package:anime_app/utils/constants/style.dart';
 import 'package:gap/gap.dart';
 
 import '../../controller/my_list_controller.dart';
-import '../../widgets/favorites/widget/default_screen.dart';
+import '../../widgets/favorites/screen/default_bg_screen.dart';
 
-class UnWatchedAnimePage extends ConsumerWidget {
-  const UnWatchedAnimePage({super.key});
+class WatchedAnimePage extends ConsumerWidget {
+  const WatchedAnimePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final watchedAnime = ref.watch(unWatchedAnimeProvider);
+    final watchedAnime = ref.watch(watchedAnimeProvider);
 
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
@@ -33,6 +33,14 @@ class UnWatchedAnimePage extends ConsumerWidget {
                         decoration: BoxDecoration(
                           color: DColors.primaryColor,
                           borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: DColors.pureWhite,
+                              blurRadius: 5,
+                              spreadRadius: 0.5,
+                              offset: Offset(0, 0),
+                            )
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,8 +69,8 @@ class UnWatchedAnimePage extends ConsumerWidget {
                                         onTap: () {
                                           ref
                                               .read(
-                                                  unWatchedAnimeProvider.notifier)
-                                              .removeFromUnWatched(anime.id);
+                                                  watchedAnimeProvider.notifier)
+                                              .removeFromWatched(anime.id);
                                         },
                                         child: const Icon(
                                           Icons.delete,

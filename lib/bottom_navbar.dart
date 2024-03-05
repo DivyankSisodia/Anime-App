@@ -1,11 +1,11 @@
-import 'package:anime_app/screen/home_screen.dart';
+import 'package:anime_app/screen/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'controller/bottom_navbar_controller.dart';
-import 'screen/anime_stack_screen.dart';
-import 'screen/favourites/favorite.dart';
-import 'screen/profile_screen.dart';
+import 'screen/categories/anime_stack_screen.dart';
+import 'screen/my_list/favorite.dart';
+import 'screen/user_profile/profile_screen.dart';
 import 'utils/constants/colors.dart';
 
 class CustomBottomNavbar extends ConsumerWidget {

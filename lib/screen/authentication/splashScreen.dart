@@ -3,9 +3,9 @@ import 'package:anime_app/utils/constants/sizes.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import '../utils/constants/colors.dart';
-import '../utils/helper/helper_functions.dart';
-import 'home_screen.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/helper/helper_functions.dart';
+import '../home_screen/home_screen.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 

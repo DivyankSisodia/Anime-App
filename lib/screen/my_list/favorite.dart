@@ -1,19 +1,18 @@
+import 'package:anime_app/screen/my_list/unwatched_anime.dart';
+import 'package:anime_app/screen/my_list/watched_anime_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../utils/constants/colors.dart';
-import '../utils/constants/style.dart';
-import '../widgets/anime_stack/manga_card.dart';
 
-class AnimeScreens extends ConsumerWidget {
-  const AnimeScreens({super.key});
+import '../../utils/constants/colors.dart';
+import '../../utils/constants/style.dart';
+import '../../utils/constants/text_strings.dart';
+
+class Favourites extends StatelessWidget {
+  const Favourites({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // Watch the mangaListProvider to get manga data
-    // final AsyncValue<List<Manga>> mangaList = ref.watch(mangaDataProvider);
-
+  Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 3,
       child: Scaffold(
         backgroundColor: DColors.backgroundColor,
@@ -23,42 +22,45 @@ class AnimeScreens extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Browse',
+                DTexts.mylist,
                 style: DStyle.mediumlargeHeading,
               ),
               Image.asset(
                 'assets/icons/Search.png',
                 color: DColors.pureWhite,
-                width: 70,
+                width: 80,
               )
             ],
           ),
           bottom: const TabBar(
             tabAlignment: TabAlignment.start,
-            padding: EdgeInsets.only(left: 20, right: 33),
+            padding: EdgeInsets.only(left: 20, right: 28),
             dividerColor: DColors.backgroundColor,
-            labelPadding: EdgeInsets.only(left: 8, right: 33),
+            labelPadding: EdgeInsets.only(left: 8, right: 28),
             indicatorColor: DColors.splashColor,
             labelColor: DColors.primaryColor,
             isScrollable: true,
             tabs: [
               Tab(
-                child: Text('Anime', style: DStyle.mediumbuttonText),
+                child: Text(DTexts.watched, style: DStyle.smalllightbuttonText),
               ),
               Tab(
-                child: Text('Manga', style: DStyle.mediumbuttonText),
+                child:
+                    Text(DTexts.unWatched, style: DStyle.smalllightbuttonText),
               ),
               Tab(
-                child: Text('Merch', style: DStyle.mediumbuttonText),
+                child:
+                    Text(DTexts.downloads, style: DStyle.smalllightbuttonText),
               )
             ],
           ),
         ),
         body: const TabBarView(
           children: [
-            Center(child: Text('Anime', style: DStyle.mediumbuttonText)),
+            WatchedAnimePage(),
+
             // Display manga data when available
-            MangaCard(),
+            UnWatchedAnimePage(),
             Center(child: Text('Merch', style: DStyle.mediumbuttonText)),
           ],
         ),

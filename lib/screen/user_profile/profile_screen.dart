@@ -7,7 +7,7 @@ import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../widgets/HomeScreen/common/text_heading.dart';
+import '../../widgets/HomeScreen/common/text_heading.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
