@@ -14,7 +14,7 @@ class LoadingEffect extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: 5, // Or any placeholder count
-        itemBuilder: (context, index) => ShimmerEffect(),
+        itemBuilder: (context, index) => const  ShimmerEffect(),
       ),
     );
   }

@@ -93,6 +93,13 @@ class DStyle {
     fontWeight: FontWeight.w400,
   );
 
+  static const descriptionText = TextStyle(
+    color: Color.fromARGB(255, 220, 220, 220),
+    fontSize: 13,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w300,
+  );
+
   static const smalllightbuttonDarkFontText = TextStyle(
     color: DColors.pureWhite,
     fontSize: 18,
@@ -123,5 +130,12 @@ class DStyle {
     fontSize: 15,
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w200,
+  );
+
+  static const miscText3 = TextStyle(
+    color: Colors.blueAccent,
+    fontSize: 12,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w900,
   );
 }

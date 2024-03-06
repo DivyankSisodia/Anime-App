@@ -14,49 +14,86 @@ import '../common/social_icons.dart';
 import '../common/subheading.dart';
 import 'dont_have_an_accnt.dart';
 
-class LoginPageContainer extends StatelessWidget {
+class LoginPageContainer extends StatefulWidget {
   const LoginPageContainer({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: DHelperFunctions.screenHeight(context),
-      width: DHelperFunctions.screenWidth(context),
-      decoration: const BoxDecoration(
-        color: DColors.secondaryColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(60),
-          topRight: Radius.circular(60),
-        ),
+  State<LoginPageContainer> createState() => _LoginPageContainerState();
+}
+
+class _LoginPageContainerState extends State<LoginPageContainer>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _containerAnimation;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _containerAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
       ),
-      child: const Column(
-        children: [
-          Gap(70),
-          Heading(
-            text: DTexts.loginHeading,
-            style: DStyle.loginHeading,
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _containerAnimation,
+      child: Container(
+        height: DHelperFunctions.screenHeight(context),
+        width: DHelperFunctions.screenWidth(context),
+        decoration: const BoxDecoration(
+          color: DColors.secondaryColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(60),
+            topRight: Radius.circular(60),
           ),
-          SubHeading(
-            subHeading: DTexts.loginSubHeading,
-            style: DStyle.smallboldlightbuttonText,
-          ),
-          Gap(60),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: LoginTextFields(),
-          ),
-          ForgotPasswordOrRememberMe(),
-          Gap(30),
-          AuthButton(buttonText: DTexts.loginButtonText),
-          Gap(8),
-          DontHaveAnAccount(text: DTexts.or),
-          Gap(30),
-          ContinueWithText(),
-          Gap(20),
-          SocialIcons()
-        ],
+        ),
+        child: const Column(
+          children: [
+            Gap(70),
+            Heading(
+              text: DTexts.loginHeading,
+              style: DStyle.loginHeading,
+            ),
+            SubHeading(
+              subHeading: DTexts.loginSubHeading,
+              style: DStyle.smallboldlightbuttonText,
+            ),
+            Gap(60),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: LoginTextFields(),
+            ),
+            ForgotPasswordOrRememberMe(),
+            Gap(30),
+            AuthButton(buttonText: DTexts.loginButtonText),
+            Gap(8),
+            DontHaveAnAccount(text: DTexts.or),
+            Gap(30),
+            ContinueWithText(),
+            Gap(20),
+            SocialIcons()
+          ],
+        ),
       ),
     );
   }

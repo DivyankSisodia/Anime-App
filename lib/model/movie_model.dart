@@ -5,7 +5,7 @@ class Movie {
   final String duration;
   final String type;
   final String rating;
-  final Episodes episodes;
+  final Episodes? episodes;
 
   Movie({
     required this.id,
@@ -19,13 +19,14 @@ class Movie {
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      id: json['id'],
-      name: json['name'],
-      poster: json['poster'],
-      duration: json['duration'],
-      type: json['type'],
-      rating: json['rating'],
-      episodes: Episodes.fromJson(json['episodes']),
+      id: json['id'] ?? 'id',
+      name: json['name'] ?? '',
+      poster: json['poster'] ?? '',
+      duration: json['duration'] ?? '',
+      type: json['type'] ?? '',
+      rating: json['rating'] ?? '',
+      episodes:
+          json['episodes'] != null ? Episodes.fromJson(json['episodes']) : null,
     );
   }
 }

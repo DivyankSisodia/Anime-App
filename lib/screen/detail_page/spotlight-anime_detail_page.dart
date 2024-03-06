@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -90,9 +91,51 @@ class AnimeDetailScreen extends ConsumerWidget {
                           style: DStyle.mediumbuttonText,
                         ),
                         const Gap(10),
-                        Text(
-                          anime.jname,
-                          style: DStyle.smallHeading,
+                        Consumer(
+                          builder: (context, watch, _) {
+                            final isJTitleExpanded =
+                                ref.watch(isJTitleExpandedProvider);
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Flexible(
+                                  child: SizedBox(
+                                    width:
+                                        DHelperFunctions.screenWidth(context) *
+                                            0.8,
+                                    child: Text(
+                                      anime.jname,
+                                      style: DStyle.smalllightbuttonText,
+                                      maxLines: isJTitleExpanded
+                                          ? anime.jname.length
+                                          : 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    ref
+                                            .read(isJTitleExpandedProvider.notifier)
+                                            .state =
+                                        !ref
+                                            .read(isJTitleExpandedProvider
+                                                .notifier)
+                                            .state;
+                                  },
+                                  child: Text(
+                                    ref
+                                            .read(
+                                                isDescExpandedProvider.notifier)
+                                            .state
+                                        ? "Read Less"
+                                        : "  more...",
+                                    style: DStyle.miscText3,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         ),
                         const Gap(10),
                         Consumer(
@@ -101,7 +144,7 @@ class AnimeDetailScreen extends ConsumerWidget {
                                 ref.watch(isDescExpandedProvider);
                             return Text(
                               anime.description,
-                              style: DStyle.smalllightbuttonText,
+                              style: DStyle.descriptionText,
                               maxLines:
                                   isDescExpanded ? anime.description.length : 3,
                               overflow: TextOverflow.ellipsis,

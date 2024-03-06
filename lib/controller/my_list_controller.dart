@@ -48,3 +48,26 @@ final unWatchedAnimeProvider =
     StateNotifierProvider<UnWatchedItemNotifier, List<Anime>>((ref) {
   return UnWatchedItemNotifier();
 });
+
+
+class DownloadedItemNotifier extends StateNotifier<List<Anime>> {
+  DownloadedItemNotifier() : super(downloadedAnime);
+
+  // add Anime to the list
+  void addToDownloaded(Anime anime) {
+    state = [...state, anime];
+  }
+
+  // remove Anime from the list
+  void removeFromDownloaded(String id) {
+    state = [
+      for (final anime in state)
+        if (anime.id != id) anime
+    ];
+  }
+}
+
+final downloadedAnimeProvider =
+    StateNotifierProvider<DownloadedItemNotifier, List<Anime>>((ref) {
+  return DownloadedItemNotifier();
+});

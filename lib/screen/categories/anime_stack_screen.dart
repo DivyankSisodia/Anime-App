@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/style.dart';
-import '../../widgets/anime_stack/manga_card.dart';
+import '../../widgets/anime_stack/movie_card.dart';
 
 class AnimeScreens extends ConsumerWidget {
   const AnimeScreens({super.key});
@@ -66,7 +66,7 @@ class AnimeScreens extends ConsumerWidget {
           children: [
             Center(child: Text('Anime', style: DStyle.mediumbuttonText)),
             // Display manga data when available
-            Center(child: Text('Movies', style: DStyle.mediumbuttonText)),
+            MovieCard(),
             Center(child: Text('Merch', style: DStyle.mediumbuttonText)),
           ],
         ),
