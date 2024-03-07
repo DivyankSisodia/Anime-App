@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../controller/api_data_controller.dart';
+import '../../../../controller/Home Page/api_data_controller.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper/helper_functions.dart';
 import '../../common/anime_card.dart';
@@ -20,7 +20,7 @@ class PopularAnimeCard extends ConsumerWidget {
         return animeList.when(
           data: (animeData) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 75.0),
+              padding: const EdgeInsets.only(bottom: 15.0),
               child: Container(
                 height: DHelperFunctions.screenHeight(context) * 0.209,
                 width: double.infinity,

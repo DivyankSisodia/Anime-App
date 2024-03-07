@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../controller/api_data_controller.dart';
+import '../../../../controller/Home Page/api_data_controller.dart';
 import '../../../../screen/detail_page/trending_anime_detail_page.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper/helper_functions.dart';

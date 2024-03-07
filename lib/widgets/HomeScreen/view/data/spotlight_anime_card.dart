@@ -1,8 +1,9 @@
 import 'package:anime_app/screen/detail_page/spotlight-anime_detail_page.dart';
+import 'package:anime_app/utils/constants/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../controller/api_data_controller.dart';
+import '../../../../controller/Home Page/api_data_controller.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper/helper_functions.dart';
 import '../../common/anime_card.dart';
@@ -48,7 +49,30 @@ class SpotlightAnimeCard extends ConsumerWidget {
             );
           },
           loading: () => const LoadingEffect(),
-          error: (error, stackTrace) => Text('Error: $error'),
+          error: (error, stackTrace) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blueAccent,
+            ),
+            height: DHelperFunctions.screenHeight(context) * 0.109,
+            width: DHelperFunctions.screenWidth(context) / 1.5,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Error: $error',
+                    style: DStyle.bottomNavbarText,
+                  ),
+                  const Icon(
+                    Icons.error,
+                    color: Colors.white,
+                    size: 30,
+                  )
+                ],
+              ),
+            ),
+          ),
         );
       },
     );
