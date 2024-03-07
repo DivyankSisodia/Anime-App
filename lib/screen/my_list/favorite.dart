@@ -1,3 +1,4 @@
+import 'package:anime_app/screen/my_list/download_anime.dart';
 import 'package:anime_app/screen/my_list/unwatched_anime.dart';
 import 'package:anime_app/screen/my_list/watched_anime_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class Favourites extends StatelessWidget {
 
             // Display manga data when available
             UnWatchedAnimePage(),
-            Center(child: Text('Merch', style: DStyle.mediumbuttonText)),
+            DownloadAnimePage(),
           ],
         ),
       ),

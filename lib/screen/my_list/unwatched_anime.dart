@@ -5,7 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:gap/gap.dart';
 
-import '../../controller/my_list_controller.dart';
+import '../../controller/my list/my_list_controller.dart';
+import '../../utils/constants/text_strings.dart';
 import '../../widgets/favorites/screen/default_bg_screen.dart';
 
 class UnWatchedAnimePage extends ConsumerWidget {
@@ -20,7 +21,12 @@ class UnWatchedAnimePage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
       body: watchedAnime.isEmpty
-          ? const DefaultLoadedScreen()
+          ? const DefaultLoadedScreen(
+              image: 'assets/images/Ellipse 19.png',
+              title: DTexts.noUnwatchedContent,
+              subTitle: DTexts.noUnwatchedContentSub,
+              buttonText: DTexts.newList,
+          )
           : ListView.builder(
               itemCount: watchedAnime.length,
               itemBuilder: (context, index) {

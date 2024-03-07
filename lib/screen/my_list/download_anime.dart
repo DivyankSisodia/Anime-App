@@ -1,5 +1,4 @@
 import 'package:anime_app/utils/constants/colors.dart';
-import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,28 +6,29 @@ import 'package:anime_app/utils/constants/style.dart';
 import 'package:gap/gap.dart';
 
 import '../../controller/my list/my_list_controller.dart';
+import '../../utils/constants/text_strings.dart';
 import '../../widgets/favorites/screen/default_bg_screen.dart';
 
-class WatchedAnimePage extends ConsumerWidget {
-  const WatchedAnimePage({super.key});
+class DownloadAnimePage extends ConsumerWidget {
+  const DownloadAnimePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final watchedAnime = ref.watch(watchedAnimeProvider);
+    final downloadAnime = ref.watch(downloadedAnimeProvider);
 
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
-      body: watchedAnime.isEmpty
+      body: downloadAnime.isEmpty
           ? const DefaultLoadedScreen(
-              image: 'assets/images/Ellipse 18.png',
-              title: DTexts.noWatchedContent,
-              subTitle: DTexts.noWatchedContentSub,
+              image: 'assets/images/Ellipse 20.png',
+              title: DTexts.noDownloadContent,
+              subTitle: DTexts.noDownloadContentSub,
               buttonText: DTexts.browseAll,
             )
           : ListView.builder(
-              itemCount: watchedAnime.length,
+              itemCount: downloadAnime.length,
               itemBuilder: (context, index) {
-                final anime = watchedAnime[index];
+                final anime = downloadAnime[index];
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
@@ -74,9 +74,9 @@ class WatchedAnimePage extends ConsumerWidget {
                                       GestureDetector(
                                         onTap: () {
                                           ref
-                                              .read(
-                                                  watchedAnimeProvider.notifier)
-                                              .removeFromWatched(anime.id);
+                                              .read(downloadedAnimeProvider
+                                                  .notifier)
+                                              .removeFromDownloaded(anime.id);
                                         },
                                         child: const Icon(
                                           Icons.delete,
