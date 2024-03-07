@@ -73,7 +73,7 @@ class DTexts {
   static const String trending = "Trending..";
 
   // profile section texts
-  static const String profile = "Profile";
+  static const String profile = "Profile Section";
   static const String membership = "Membership Plan";
   static const String changeEmail = "Change Email";
   static const String changePassword = "Change Password";
