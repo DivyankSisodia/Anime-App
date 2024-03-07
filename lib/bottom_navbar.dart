@@ -2,7 +2,7 @@ import 'package:anime_app/screen/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'controller/bottom_navbar_controller.dart';
+import 'controller/bottom Navbar/bottom_navbar_controller.dart';
 import 'screen/categories/anime_stack_screen.dart';
 import 'screen/my_list/favorite.dart';
 import 'screen/user_profile/profile_screen.dart';
