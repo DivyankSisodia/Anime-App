@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/style.dart';
 import '../../widgets/anime_stack/fav_anime_card.dart';
-import '../../widgets/anime_stack/march_cards.dart';
+import '../../widgets/anime_stack/merch_cards.dart';
 import '../../widgets/anime_stack/movie_card.dart';
 
 class AnimeScreens extends ConsumerWidget {
