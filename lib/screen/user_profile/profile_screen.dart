@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:anime_app/screen/user_profile/edit_profile.dart';
 import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import '../../widgets/HomeScreen/common/text_heading.dart';
@@ -60,12 +62,44 @@ class _ProfileScreenState extends State<ProfileScreen>
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(
-                          top: DHelperFunctions.screenHeight(context) * 0.017,
-                        ),
-                        child: const TitleORHeading(
-                          title: DTexts.profile,
-                          fontstyle: DStyle.mediumHeading,
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: DHelperFunctions.screenHeight(context) *
+                                    0.017,
+                              ),
+                              child: const TitleORHeading(
+                                title: DTexts.profile,
+                                fontstyle: DStyle.mediumHeading,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const EditProfileSection(),
+                                  ),
+                                );
+                              },
+                              child: const Column(
+                                children: [
+                                  Icon(
+                                    Icons.edit,
+                                    color: DColors.pureWhite,
+                                  ),
+                                  Text(
+                                    'Edit Profile',
+                                    style: DStyle.smalllightbuttonText,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       const Gap(8),
