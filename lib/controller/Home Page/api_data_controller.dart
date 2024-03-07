@@ -3,7 +3,7 @@
 import 'package:anime_app/services/API/anime_api.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../model/anime_model.dart';
+import '../../model/anime_model.dart';
 
 // Provider for the API service
 final animeProvider = Provider<AnimeServices>((ref) => AnimeServices());
