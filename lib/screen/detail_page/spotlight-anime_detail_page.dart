@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -10,7 +9,7 @@ import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 
-import '../../controller/my_list_controller.dart';
+import '../../controller/my list/my_list_controller.dart';
 import '../../utils/helper/helper_functions.dart';
 
 final isDescExpandedProvider = StateProvider((ref) => false);
@@ -55,7 +54,9 @@ class AnimeDetailScreen extends ConsumerWidget {
                   const Gap(10),
                   UnWatchedButton(anime: anime),
                   const Gap(10),
-                  const DownloadButton()
+                  DownloadButton(
+                    anime: anime,
+                  )
                 ],
               ),
             ),
@@ -179,28 +180,42 @@ class AnimeDetailScreen extends ConsumerWidget {
   }
 }
 
-class DownloadButton extends StatelessWidget {
+class DownloadButton extends ConsumerWidget {
   const DownloadButton({
     super.key,
+    required this.anime,
   });
 
+  final Anime anime;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Expanded(
       flex: 7,
-      child: Container(
-        height: 50,
-        width: 100,
-        decoration: BoxDecoration(
-          color: DColors.lighterColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Center(
-          child: Text(
-            DTexts.download,
-            style: DStyle.smalllightbuttonDarkFontText,
-          ),
-        ),
+      child: Consumer(
+        builder: (context, watch, child) {
+          return GestureDetector(
+            onTap: () {
+              ref.read(downloadedAnimeProvider.notifier).addToDownloaded(anime);
+              DHelperFunctions.showSnackBar(
+                  context, 'Added to Download Section');
+            },
+            child: Container(
+              height: 50,
+              width: 100,
+              decoration: BoxDecoration(
+                color: DColors.lighterColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: Text(
+                  DTexts.download,
+                  style: DStyle.smalllightbuttonDarkFontText,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

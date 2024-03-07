@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/style.dart';
+import '../../widgets/anime_stack/fav_anime_card.dart';
+import '../../widgets/anime_stack/march_cards.dart';
 import '../../widgets/anime_stack/movie_card.dart';
 
 class AnimeScreens extends ConsumerWidget {
@@ -62,12 +64,12 @@ class AnimeScreens extends ConsumerWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
-            Center(child: Text('Anime', style: DStyle.mediumbuttonText)),
+            const FavAnimeCard(),
             // Display manga data when available
-            MovieCard(),
-            Center(child: Text('Merch', style: DStyle.mediumbuttonText)),
+            const MovieCard(),
+            MerchPage(),
           ],
         ),
       ),
