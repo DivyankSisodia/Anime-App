@@ -3,13 +3,17 @@ import 'package:gap/gap.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/style.dart';
-import '../../../utils/constants/text_strings.dart';
 import '../../../utils/helper/helper_functions.dart';
 
 class DefaultLoadedScreen extends StatelessWidget {
   const DefaultLoadedScreen({
-    super.key,
+    super.key, required this.image, required this.title, required this.subTitle, required this.buttonText,
   });
+
+  final String image;
+  final String title;
+  final String subTitle;
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +24,15 @@ class DefaultLoadedScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/Ellipse 18.png'),
+          Image.asset(image),
           const Gap(1),
-          const Text(
-            DTexts.noWatchedContent,
+          Text(
+            title,
             style: DStyle.mediumHeading,
           ),
           const Gap(2),
-          const Text(
-            DTexts.noWatchedContentSub,
+          Text(
+            subTitle,
             style: DStyle.smallHeadingText,
           ),
           const Gap(10),
@@ -39,9 +43,9 @@ class DefaultLoadedScreen extends StatelessWidget {
               color: DColors.primaryColor,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                DTexts.browseAll,
+                buttonText,
                 style: DStyle.smallboldlightbuttonText,
               ),
             ),
