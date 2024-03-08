@@ -77,21 +77,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
                         child: ProfileHeadingSection(),
                       ),
-                      // const Gap(8),
+                      const Gap(8),
                       const CircleAvatar(
-                        radius: 45,
+                        radius: 55,
                         backgroundImage:
                             AssetImage('assets/images/Ellipse 19.png'),
                       ),
                       const Gap(12),
-                      Text(
-                        'Hi ${userName ?? ''}', // Display "Hi " followed by the username
-                        style: const TextStyle(
-                          color: DColors.pureWhite,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       const Gap(10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 14.0),
