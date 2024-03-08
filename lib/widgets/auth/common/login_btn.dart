@@ -6,7 +6,8 @@ import '../../../utils/constants/style.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
-    super.key, required this.buttonText,
+    super.key,
+    required this.buttonText,
   });
 
   final String buttonText;
@@ -18,12 +19,12 @@ class AuthButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.6,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CustomBottomNavbar(),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => CustomBottomNavbar(),
+          //   ),
+          // );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: DColors.lightColor,
