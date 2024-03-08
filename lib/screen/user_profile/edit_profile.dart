@@ -1,13 +1,70 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:anime_app/utils/constants/colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class EditProfileSection extends StatelessWidget {
+import '../../widgets/user-profile/edit-profile-section/buttons.dart';
+import '../../widgets/user-profile/edit-profile-section/deatils_text_field.dart';
+
+class EditProfileSection extends StatefulWidget {
   const EditProfileSection({super.key});
+
+  @override
+  State<EditProfileSection> createState() => _EditProfileSectionState();
+}
+
+class _EditProfileSectionState extends State<EditProfileSection> {
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> userData() async {
+    try {
+      await addUserDetails(
+        _firstNameController.text,
+        _emailController.text, // Pass the email controller text
+        _phoneController.text,
+        _passwordController.text,
+        _userNameController.text,
+        _lastNameController.text,
+      );
+
+      // Show SnackBar after data is successfully added to Firestore
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.greenAccent,
+          content: Text(
+            'Your profile has been successfully edited.',
+            style: TextStyle(
+              color: Colors.black, // Set text color
+            ),
+          ),
+        ),
+      );
+    } catch (e) {
+      // Handle any errors that occur during the data upload process
+      print('Error adding user details: $e');
+    }
+  }
+
+  Future addUserDetails(String firstname, String email, String phone,
+      String password, String username, String lastname) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'firstname': firstname,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'username': username,
+      'lastname': lastname,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,154 +102,45 @@ class EditProfileSection extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                ),
-                              ),
-                              labelText: 'First Name',
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                              ),
-                              prefixIcon: Icon(
-                                Iconsax.user,
-                                color: Colors.white,
-                              ),
-                            ),
+                          child: DetailFormField(
+                            controller: _firstNameController,
+                            labelText: DTexts.first,
+                            icon: Iconsax.user,
                           ),
                         ),
                         const Gap(10),
                         Expanded(
-                          child: TextFormField(
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                borderSide: BorderSide(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                ),
-                              ),
-                              labelText: 'Last Name',
-                              labelStyle: TextStyle(
-                                color: Colors.white,
-                              ),
-                              prefixIcon: Icon(
-                                Iconsax.user,
-                                color: Colors.white,
-                              ),
-                            ),
+                          child: DetailFormField(
+                            controller: _lastNameController,
+                            labelText: DTexts.last,
+                            icon: Iconsax.user,
                           ),
                         ),
                       ],
                     ),
                     const Gap(16),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                        ),
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Iconsax.user_edit,
-                          color: Colors.white,
-                        ),
-                      ),
+                    DetailFormField(
+                      controller: _userNameController,
+                      labelText: DTexts.username,
+                      icon: Iconsax.user_edit,
                     ),
                     const Gap(16),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                        ),
-                        labelText: 'E-Mail',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Iconsax.direct,
-                          color: Colors.white,
-                        ),
-                      ),
+                    DetailFormField(
+                      controller: _emailController,
+                      labelText: DTexts.email,
+                      icon: Iconsax.direct,
                     ),
                     const Gap(16),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                        ),
-                        labelText: 'Phone Number',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Iconsax.call,
-                          color: Colors.white,
-                        ),
-                      ),
+                    DetailFormField(
+                      controller: _phoneController,
+                      labelText: DTexts.phone,
+                      icon: Iconsax.call,
                     ),
                     const Gap(16),
-                    TextFormField(
-                      style: const TextStyle(
-                        color: Colors.white,
-                      ),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          ),
-                        ),
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                        ),
-                        prefixIcon: Icon(
-                          Iconsax.password_check,
-                          color: Colors.white,
-                        ),
-                      ),
-                      obscureText: true,
+                    DetailFormField(
+                      controller: _passwordController,
+                      labelText: DTexts.password,
+                      icon: Iconsax.password_check,
                     ),
                     const Gap(16),
                   ],
@@ -206,60 +154,20 @@ class EditProfileSection extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Row(
                   children: [
-                    Flexible(
-                      child: Container(
-                        height: 70,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 234, 102, 62),
-                              blurRadius: 6,
-                              spreadRadius: 1,
-                              offset: Offset(0, 5),
-                            ),
-                          ],
-                          color: DColors.primaryColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Cancel',
-                            style: TextStyle(
-                              color: Colors.redAccent,
-                              fontSize: 25,
-                            ),
-                          ),
-                        ),
-                      ),
+                    Buttons(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      boxShadow: const Color.fromARGB(255, 234, 102, 62),
+                      color: Colors.redAccent,
+                      text: DTexts.cancel,
                     ),
                     const Gap(20),
-                    Flexible(
-                      child: Container(
-                        height: 70,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 154, 234, 62),
-                              blurRadius: 6,
-                              spreadRadius: 1,
-                              offset: Offset(0, 5),
-                            ),
-                          ],
-                          color: DColors.primaryColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'Save',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 102, 210, 131),
-                              fontSize: 25,
-                            ),
-                          ),
-                        ),
-                      ),
+                    Buttons(
+                      onPressed: userData,
+                      boxShadow: const Color.fromARGB(255, 62, 234, 94),
+                      color: Colors.greenAccent,
+                      text: DTexts.save,
                     ),
                   ],
                 ),

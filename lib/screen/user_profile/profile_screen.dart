@@ -1,15 +1,21 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'package:anime_app/screen/user_profile/edit_profile.dart';
 import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
+import '../../services/Firebase/User_data.dart';
 import '../../widgets/HomeScreen/common/text_heading.dart';
+import '../../widgets/user-profile/profile-Section/member_ship_box.dart';
+import '../../widgets/user-profile/profile-Section/preference_box.dart';
+import '../../widgets/user-profile/profile-Section/profile_section_header.dart';
+import '../../widgets/user-profile/profile-Section/sign_out_btn.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,6 +27,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
+  String? userName;
 
   @override
   void initState() {
@@ -36,6 +43,11 @@ class _ProfileScreenState extends State<ProfileScreen>
   void dispose() {
     _animationController.dispose();
     super.dispose();
+  }
+
+  void signOut() async {
+    print('i am called');
+    FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -61,54 +73,26 @@ class _ProfileScreenState extends State<ProfileScreen>
                 child: SizedBox(
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: DHelperFunctions.screenHeight(context) *
-                                    0.017,
-                              ),
-                              child: const TitleORHeading(
-                                title: DTexts.profile,
-                                fontstyle: DStyle.mediumHeading,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const EditProfileSection(),
-                                  ),
-                                );
-                              },
-                              child: const Column(
-                                children: [
-                                  Icon(
-                                    Icons.edit,
-                                    color: DColors.pureWhite,
-                                  ),
-                                  Text(
-                                    'Edit Profile',
-                                    style: DStyle.smalllightbuttonText,
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.0),
+                        child: ProfileHeadingSection(),
                       ),
-                      const Gap(8),
+                      // const Gap(8),
                       const CircleAvatar(
-                        radius: 55,
+                        radius: 45,
                         backgroundImage:
                             AssetImage('assets/images/Ellipse 19.png'),
                       ),
-                      const Gap(22),
+                      const Gap(12),
+                      Text(
+                        'Hi ${userName ?? ''}', // Display "Hi " followed by the username
+                        style: const TextStyle(
+                          color: DColors.pureWhite,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Gap(10),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 14.0),
                         child: Container(
@@ -118,72 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             color: DColors.lightColor,
                             borderRadius: BorderRadius.circular(23),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
-                                    child: Text(
-                                      DTexts.membership,
-                                      style: DStyle.smalllightbuttonText,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: DColors.textSecondaryColor,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
-                                    child: Text(
-                                      DTexts.changeEmail,
-                                      style: DStyle.smalllightbuttonText,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: DColors.textSecondaryColor,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 16.0),
-                                    child: Text(
-                                      DTexts.changePassword,
-                                      style: DStyle.smalllightbuttonText,
-                                    ),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: DColors.textSecondaryColor,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                          child: const MemberShipAndChangeEmail(),
                         ),
                       ),
                     ],
@@ -216,148 +135,15 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ),
                         const Gap(12),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-                          child: Container(
-                            height:
-                                DHelperFunctions.screenHeight(context) * 0.21,
-                            width: DHelperFunctions.screenWidth(context) * 0.9,
-                            decoration: BoxDecoration(
-                              color: DColors.lightColor,
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        DTexts.audioLang,
-                                        style: DStyle.smalllightbuttonText,
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Padding(
-                                          padding: EdgeInsets.only(right: 16.0),
-                                          child: Text(
-                                            DTexts.lang,
-                                            style: DStyle.smalllightbuttonText,
-                                          ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: DColors.textSecondaryColor,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        DTexts.subtitleLang,
-                                        style: DStyle.smalllightbuttonText,
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        const Padding(
-                                          padding: EdgeInsets.only(right: 16.0),
-                                          child: Text(
-                                            DTexts.appLang,
-                                            style: DStyle.smalllightbuttonText,
-                                          ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.arrow_forward_ios,
-                                            color: DColors.textSecondaryColor,
-                                            size: 20,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        DTexts.mobileData,
-                                        style: DStyle.smalllightbuttonText,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                      child: Switch(
-                                        value: true,
-                                        onChanged: (value) {
-                                          value = !value;
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 16.0),
-                                      child: Text(
-                                        DTexts.matureContent,
-                                        style: DStyle.smalllightbuttonText,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 40,
-                                      child: Switch(
-                                        value: true,
-                                        onChanged: (value) {
-                                          value = !value;
-                                        },
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 14.0),
+                          child: PreferenceBox(),
                         ),
                         const Gap(20),
-                        Center(
-                          child: Container(
-                            height: 50,
-                            width: 140,
-                            decoration: BoxDecoration(
-                              color: DColors.lightColor,
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                DTexts.signout,
-                                style: DStyle.lightbuttonText,
-                              ),
-                            ),
-                          ),
-                        )
+                        GestureDetector(
+                          onTap: signOut,
+                          child: const SignOutButton(),
+                        ),
                       ],
                     ),
                   ),
