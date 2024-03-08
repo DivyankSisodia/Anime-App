@@ -71,7 +71,14 @@ class DTexts {
   static const String seeAll = "See all";
   static const String search = "Search..";
   static const String trending = "Trending..";
-
+  static const String first = "First Name";
+  static const String last = "Last Name";
+  static const String save = "Save";
+  static const String cancel = "Cancel";
+  static const String username = "Username";
+  static const String email = "E-Mail";
+  static const String phone = "Phone Number";
+  static const String password = "Password";
   // profile section texts
   static const String profile = "Profile Section";
   static const String membership = "Membership Plan";
