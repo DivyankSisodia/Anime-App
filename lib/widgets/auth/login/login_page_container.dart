@@ -1,6 +1,7 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously, avoid_print
 
 import 'package:anime_app/bottom_navbar.dart';
+import 'package:anime_app/widgets/auth/isRegister.dart';
 import 'package:anime_app/widgets/auth/login/forgot_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,7 @@ class _LoginPageContainerState extends State<LoginPageContainer>
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => CustomBottomNavbar(),
+              builder: (context) =>const  Authpage(),
             ),
           );
         } on FirebaseAuthException catch (e) {

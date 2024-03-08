@@ -1,9 +1,12 @@
-// ignore_for_file: use_build_context_synchronously, unused_field, avoid_print
+// ignore_for_file: use_build_context_synchronously, unused_field, avoid_print, library_private_types_in_public_api
 
 import 'package:anime_app/screen/home_screen/home_screen.dart';
 import 'package:anime_app/widgets/auth/signup/remember_me.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/scheduler/ticker.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 import '../../../bottom_navbar.dart';
@@ -24,10 +27,46 @@ class SignUpPageContainer extends StatefulWidget {
   });
 
   @override
-  State<SignUpPageContainer> createState() => _SignUpPageContainerState();
+  _SignUpPageContainerState createState() => _SignUpPageContainerState();
 }
 
-class _SignUpPageContainerState extends State<SignUpPageContainer> {
+class _SignUpPageContainerState extends State<StatefulWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _containerAnimation;
+  late Animation<double> _textFieldAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    );
+
+    _containerAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _textFieldAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.5, 1, curve: Curves.easeInOutCirc),
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   final RegExp emailRegex = RegExp(
     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
   );
@@ -84,157 +123,168 @@ class _SignUpPageContainerState extends State<SignUpPageContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: DHelperFunctions.screenHeight(context),
-      width: DHelperFunctions.screenWidth(context),
-      decoration: const BoxDecoration(
-        color: DColors.secondaryColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(60),
-          topRight: Radius.circular(60),
+    return FadeTransition(
+      opacity: _containerAnimation,
+      child: Container(
+        height: DHelperFunctions.screenHeight(context),
+        width: DHelperFunctions.screenWidth(context),
+        decoration: const BoxDecoration(
+          color: DColors.secondaryColor,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(60),
+            topRight: Radius.circular(60),
+          ),
         ),
-      ),
-      child: Column(
-        children: [
-          const Gap(60),
-          const Heading(text: DTexts.signUpHeading, style: DStyle.loginHeading),
-          const SubHeading(
-            subHeading: DTexts.signUpSubHeading,
-            style: DStyle.smallboldlightbuttonText,
-          ),
-          const Gap(50),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Form(
-              // autovalidateMode: AutovalidateMode.onUserInte
-              key: _key,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty || !value.contains('@')) {
-                          return 'Please enter a valid email';
-                        }
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email';
-                        }
-                        return null;
-                      },
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
-                        filled: true,
-                        fillColor: DColors.textFieldColor,
-                        hintText: DTexts.loginEmailField,
-                        hintStyle: DStyle.textField,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Gap(20),
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
-                        }
-                        return null;
-                      },
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
-                        filled: true,
-                        fillColor: DColors.textFieldColor,
-                        hintText: DTexts.passwordSignUp,
-                        hintStyle: DStyle.textField,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Gap(20),
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value != passwordController.text) {
-                          return 'Passwords do not match';
-                        }
-                        return null;
-                      },
-                      controller: confirmPasswordController,
-                      decoration: InputDecoration(
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 20),
-                        filled: true,
-                        fillColor: DColors.textFieldColor,
-                        hintText: DTexts.confirmPasswordSignUp,
-                        hintStyle: DStyle.textField,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+        child: Column(
+          children: [
+            const Gap(60),
+            const Heading(
+                text: DTexts.signUpHeading, style: DStyle.loginHeading),
+            const SubHeading(
+              subHeading: DTexts.signUpSubHeading,
+              style: DStyle.smallboldlightbuttonText,
             ),
-          ),
-          const SignUpRememberMe(),
-          const Gap(25),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: SizedBox(
-              height: 50,
-              width: DHelperFunctions.screenHeight(context) * 0.6,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_key.currentState!.validate()) {
-                    setState(() {
-                      email = emailController.text;
-                      password = passwordController.text;
-                      fullName = confirmPasswordController.text;
-                    });
-                  }
-                  registration();
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: DColors.lightColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  DTexts.signUpButtonText,
-                  style: DStyle.smallboldlightbuttonText,
+            const Gap(50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Form(
+                // autovalidateMode: AutovalidateMode.onUserInte
+                key: _key,
+                child: Column(
+                  children: [
+                    FadeTransition(
+                      opacity: _textFieldAnimation,
+                      child: Expanded(
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null ||
+                                value.isEmpty ||
+                                !value.contains('@')) {
+                              return 'Please enter a valid email';
+                            }
+                            if (!emailRegex.hasMatch(value)) {
+                              return 'Please enter a valid email';
+                            }
+                            return null;
+                          },
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                            filled: true,
+                            fillColor: DColors.textFieldColor,
+                            hintText: DTexts.loginEmailField,
+                            hintStyle: DStyle.textField,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Gap(20),
+                    FadeTransition(
+                      opacity: _textFieldAnimation,
+                      child: Expanded(
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a password';
+                            }
+                            if (value.length < 6) {
+                              return 'Password must be at least 6 characters';
+                            }
+                            return null;
+                          },
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                            filled: true,
+                            fillColor: DColors.textFieldColor,
+                            hintText: DTexts.passwordSignUp,
+                            hintStyle: DStyle.textField,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Gap(20),
+                    FadeTransition(
+                      opacity: _textFieldAnimation,
+                      child: SizedBox(
+                        height: 50,
+                        width: double.infinity,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value != passwordController.text) {
+                              return 'Passwords do not match';
+                            }
+                            return null;
+                          },
+                          controller: confirmPasswordController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 20),
+                            filled: true,
+                            fillColor: DColors.textFieldColor,
+                            hintText: DTexts.confirmPasswordSignUp,
+                            hintStyle: DStyle.textField,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          const Gap(8),
-          const DontHaveAnAccount(text: DTexts.newUser),
-          const Gap(25),
-          const ContinueWithText(),
-          const Gap(20),
-          const SocialIcons(),
-        ],
+            const SignUpRememberMe(),
+            const Gap(25),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: SizedBox(
+                height: 50,
+                width: DHelperFunctions.screenHeight(context) * 0.6,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_key.currentState!.validate()) {
+                      setState(() {
+                        email = emailController.text;
+                        password = passwordController.text;
+                        fullName = confirmPasswordController.text;
+                      });
+                    }
+                    registration();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: DColors.lightColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                  ),
+                  child: const Text(
+                    DTexts.signUpButtonText,
+                    style: DStyle.smallboldlightbuttonText,
+                  ),
+                ),
+              ),
+            ),
+            const Gap(8),
+            const DontHaveAnAccount(text: DTexts.newUser),
+            const Gap(25),
+            const ContinueWithText(),
+            const Gap(20),
+            const SocialIcons(),
+          ],
+        ),
       ),
     );
   }
