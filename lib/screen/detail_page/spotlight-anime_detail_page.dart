@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 
@@ -30,7 +32,7 @@ class AnimeDetailScreen extends ConsumerWidget {
       body: Column(
         children: [
           Expanded(
-            flex: 6,
+            flex: 3,
             child: Padding(
               padding: const EdgeInsets.only(top: 30.0, left: 20, right: 20),
               child: Stack(
@@ -62,7 +64,7 @@ class AnimeDetailScreen extends ConsumerWidget {
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 3,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
@@ -71,14 +73,14 @@ class AnimeDetailScreen extends ConsumerWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: DColors.lighterColor,
-                      blurRadius: 14,
-                      spreadRadius: 8,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: DColors.lighterColor,
+                  //     blurRadius: 14,
+                  //     spreadRadius: 8,
+                  //     offset: Offset(0, 0),
+                  //   ),
+                  // ],
                 ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
@@ -131,6 +133,9 @@ class AnimeDetailScreen extends ConsumerWidget {
                                             .state
                                         ? "Read Less"
                                         : "  more...",
+                                    maxLines: isJTitleExpanded
+                                        ? anime.jname.length
+                                        : 1,
                                     style: DStyle.miscText3,
                                   ),
                                 ),
@@ -147,7 +152,7 @@ class AnimeDetailScreen extends ConsumerWidget {
                               anime.description,
                               style: DStyle.descriptionText,
                               maxLines:
-                                  isDescExpanded ? anime.description.length : 3,
+                                  isDescExpanded ? anime.description.length : 5,
                               overflow: TextOverflow.ellipsis,
                             );
                           },
@@ -174,6 +179,86 @@ class AnimeDetailScreen extends ConsumerWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 150,
+            width: double.infinity,
+            child: Padding(
+                padding: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        height: 60,
+                        width: 153,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 107, 90, 163),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              blurRadius: 5,
+                              spreadRadius: 4,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                        child: const Center(
+                          child: Text(
+                            DTexts.play,
+                            style: DStyle.lightbuttonText,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Gap(20),
+                    Expanded(
+                        flex: 6,
+                        child: Container(
+                          height: 60,
+                          width: 153,
+                          decoration: const BoxDecoration(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                blurRadius: 5,
+                                spreadRadius: 4,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 16,
+                                left: 30,
+                                child: Text(
+                                  DTexts.download,
+                                  style: DStyle.lightbuttonText,
+                                ),
+                              ),
+                              Positioned(
+                                top: 3,
+                                right: 10,
+                                child: Image.asset(
+                                  'assets/icons/Download.png',
+                                  height: 50,
+                                  width: 80,
+                                  color: DColors.pureWhite,
+                                ),
+                              )
+                            ],
+                          ),
+                        )),
+                  ],
+                )),
+          )
         ],
       ),
     );
@@ -203,9 +288,12 @@ class DownloadButton extends ConsumerWidget {
             child: Container(
               height: 50,
               width: 100,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: DColors.lighterColor,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(16),
+                  bottomLeft: Radius.circular(16),
+                ),
               ),
               child: const Center(
                 child: Text(
@@ -244,7 +332,7 @@ class UnWatchedButton extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 color: DColors.lighterColor,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: const Center(
                 child: Text(
@@ -281,9 +369,12 @@ class WatchedButton extends StatelessWidget {
             },
             child: Container(
               height: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: DColors.lighterColor,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
               ),
               child: const Center(
                 child: Text(
