@@ -16,95 +16,95 @@ class UnWatchedAnimePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final watchedAnime = ref.watch(unWatchedAnimeProvider);
+    final unwatchedAnime = ref.watch(unWatchedAnimeProvider);
 
     return Scaffold(
       backgroundColor: DColors.backgroundColor,
-      body: watchedAnime.isEmpty
+      body: unwatchedAnime.isEmpty
           ? const DefaultLoadedScreen(
               image: 'assets/images/Ellipse 19.png',
               title: DTexts.noUnwatchedContent,
               subTitle: DTexts.noUnwatchedContentSub,
               buttonText: DTexts.newList,
-          )
+            )
           : ListView.builder(
-              itemCount: watchedAnime.length,
+              itemCount: unwatchedAnime.length,
               itemBuilder: (context, index) {
-                final anime = watchedAnime[index];
-                return Card(
-                  color: DColors.backgroundColor,
-                  child: Container(
-                    height: 150,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: DColors.searchTileColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
+                final anime = unwatchedAnime[index];
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: DColors.backgroundColor,
+                    child: Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: DColors.searchTileColor,
                           borderRadius: BorderRadius.circular(20),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CachedNetworkImage(
-                              imageUrl: anime.poster,
-                              height: 180,
-                              width: 180,
-                              fit: BoxFit
-                                  .cover, // Ensure the image covers the rounded area
-                            ),
-                          ),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: DColors.pureWhite,
+                              blurRadius: 5,
+                              spreadRadius: 0.5,
+                              offset: Offset(0, 0),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl: anime.poster,
+                              height: 150,
+                              width: 150,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'Rank : ${anime.rank.toString()}',
-                                    style: DStyle.mediumHeading,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      ref
-                                          .read(unWatchedAnimeProvider.notifier)
-                                          .removeFromUnWatched(anime.id);
-                                    },
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(right: 20.0),
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                        size: 30,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        'Rank : ${anime.rank.toString()}',
+                                        style: DStyle.mediumHeading,
                                       ),
-                                    ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          ref
+                                              .read(unWatchedAnimeProvider
+                                                  .notifier)
+                                              .removeFromUnWatched(anime.id);
+                                        },
+                                        child: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          size: 30,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const Gap(5),
+                                  Text(
+                                    anime.name,
+                                    maxLines: 1,
+                                    style: DStyle.lightbuttonText,
+                                  ),
+                                  const Gap(5),
+                                  Text(
+                                    anime.description,
+                                    maxLines: 2,
+                                    style: DStyle.smalllightbuttonText,
                                   ),
                                 ],
                               ),
-                              const Gap(5),
-                              Text(
-                                anime.name,
-                                maxLines: 1,
-                                style: DStyle.lightbuttonText,
-                              ),
-                              const Gap(5),
-                              Text(
-                                anime.description,
-                                maxLines: 2,
-                                style: DStyle.smalllightbuttonText,
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            )
+                          ],
+                        )),
                   ),
                 );
               },
