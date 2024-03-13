@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../search_screen/search.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/style.dart';
 import '../../widgets/anime_stack/fav_anime_card.dart';
@@ -34,10 +35,20 @@ class AnimeScreens extends ConsumerWidget {
                     'Browse',
                     style: DStyle.mediumlargeHeading,
                   ),
-                  Image.asset(
-                    'assets/icons/Search.png',
-                    color: DColors.pureWhite,
-                    width: 70,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchScreen(),
+                        ),
+                      );
+                    },
+                    child: Image.asset(
+                      'assets/icons/Search.png',
+                      color: DColors.pureWhite,
+                      width: 70,
+                    ),
                   )
                 ],
               ),
@@ -56,7 +67,7 @@ class AnimeScreens extends ConsumerWidget {
                 child: Text('Anime', style: DStyle.mediumbuttonText),
               ),
               Tab(
-                child: Text('Manga', style: DStyle.mediumbuttonText),
+                child: Text('Movies', style: DStyle.mediumbuttonText),
               ),
               Tab(
                 child: Text('Merch', style: DStyle.mediumbuttonText),
