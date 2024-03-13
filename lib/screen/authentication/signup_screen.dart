@@ -20,11 +20,11 @@ class SignUpScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 15.0),
+              padding: EdgeInsets.only(top: 15.0),
               child: SignUpPageContainer(),
             ),
           ],
