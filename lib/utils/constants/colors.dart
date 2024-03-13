@@ -28,4 +28,7 @@ class DColors {
 
   // pure white
   static const Color pureWhite = Color(0xFFFFFFFF);
+
+  // onboarding colors
+  static const Color onboardingTitleColor = Color.fromARGB(255, 192, 151, 231);
 }
