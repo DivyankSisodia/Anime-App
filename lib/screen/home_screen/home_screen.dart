@@ -1,6 +1,7 @@
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../widgets/HomeScreen/view/widgets/anime_services.dart';
@@ -24,6 +25,8 @@ class AppHomeScreen extends ConsumerWidget {
 
               // Anime lists from API and their categories
               AnimeServices(),
+
+              Gap(20),
             ],
           ),
         ),
