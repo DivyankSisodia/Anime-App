@@ -1,16 +1,13 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, avoid_print
 
 import 'package:anime_app/utils/constants/colors.dart';
 import 'package:anime_app/utils/constants/style.dart';
 import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../services/Firebase/User_data.dart';
 import '../../widgets/HomeScreen/common/text_heading.dart';
 import '../../widgets/user-profile/profile-Section/member_ship_box.dart';
 import '../../widgets/user-profile/profile-Section/preference_box.dart';
@@ -94,7 +91,48 @@ class _ProfileScreenState extends State<ProfileScreen>
                             color: DColors.lightColor,
                             borderRadius: BorderRadius.circular(23),
                           ),
-                          child: const MemberShipAndChangeEmail(),
+                          child: GestureDetector(
+                            onTap: () {
+                              final snackBar = SnackBar(
+                                content: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(
+                                        'Feature yet to be implemented till then edit your profile',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 100, 152, 235),
+                                elevation: 8.0,
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 16,
+                                ),
+                                duration: const Duration(seconds: 4),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const MemberShipAndChangeEmail(),
+                          ),
                         ),
                       ),
                     ],
@@ -127,9 +165,49 @@ class _ProfileScreenState extends State<ProfileScreen>
                           ),
                         ),
                         const Gap(12),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 14.0),
-                          child: PreferenceBox(),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              final snackBar = SnackBar(
+                                content: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(
+                                        'These feature will be added soon. Stay tuned!',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                backgroundColor: Colors.teal.shade700,
+                                elevation: 8.0,
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 16,
+                                ),
+                                duration: const Duration(seconds: 3),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            },
+                            child: const PreferenceBox(),
+                          ),
                         ),
                         const Gap(20),
                         GestureDetector(

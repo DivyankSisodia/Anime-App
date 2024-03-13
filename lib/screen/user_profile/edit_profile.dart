@@ -50,7 +50,17 @@ class _EditProfileSectionState extends State<EditProfileSection> {
       );
     } catch (e) {
       // Handle any errors that occur during the data upload process
-      print('Error adding user details: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.greenAccent,
+          content: Text(
+            'Kindly login to edit your profile.',
+            style: TextStyle(
+              color: Colors.black, // Set text color
+            ),
+          ),
+        ),
+      );
     }
   }
 
