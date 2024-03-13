@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../bottom_navbar.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/style.dart';
 
@@ -17,24 +16,16 @@ class AuthButton extends StatelessWidget {
     return SizedBox(
       height: 50,
       width: MediaQuery.of(context).size.width * 0.6,
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => CustomBottomNavbar(),
-          //   ),
-          // );
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: DColors.lightColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: DColors.lightColor,
+          borderRadius: BorderRadius.circular(16),
         ),
-        child: Text(
-          buttonText,
-          style: DStyle.smallboldlightbuttonText,
+        child: Center(
+          child: Text(
+            buttonText,
+            style: DStyle.smallboldlightbuttonText,
+          ),
         ),
       ),
     );
