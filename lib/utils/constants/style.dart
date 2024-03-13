@@ -138,4 +138,22 @@ class DStyle {
     fontFamily: 'Poppins',
     fontWeight: FontWeight.w900,
   );
+  static const misctext4 = TextStyle(
+    color: DColors.textFieldColor,
+    fontSize: 16,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w600,
+  );
+  static const misctext5 = TextStyle(
+    color: DColors.textFieldColor,
+    fontSize: 11,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w400,
+  );
+  static const misctext6 = TextStyle(
+    color: DColors.textFieldColor,
+    fontSize: 13,
+    fontFamily: 'Poppins',
+    fontWeight: FontWeight.w500,
+  );
 }
