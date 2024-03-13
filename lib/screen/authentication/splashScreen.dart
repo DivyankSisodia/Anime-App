@@ -6,7 +6,6 @@ import 'package:anime_app/utils/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/helper/helper_functions.dart';
-import '../../widgets/auth/common/isRegister.dart';
 import 'login_screen.dart';
 import 'signup_screen.dart';
 
@@ -106,7 +105,7 @@ class SplashScreen extends StatelessWidget {
                           begin: const Offset(1, 0),
                           end: const Offset(0, 0),
                         ).animate(animation),
-                        child: const Authpage(),
+                        child: CustomBottomNavbar(),
                       );
                     },
                   ),
