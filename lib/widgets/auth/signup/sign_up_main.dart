@@ -2,21 +2,17 @@
 
 import 'package:anime_app/screen/home_screen/home_screen.dart';
 import 'package:anime_app/widgets/auth/signup/remember_me.dart';
+import 'package:anime_app/widgets/auth/signup/signup_textform_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
-import '../../../bottom_navbar.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/style.dart';
 import '../../../utils/constants/text_strings.dart';
 import '../../../utils/helper/helper_functions.dart';
 import '../common/continue_with_google.dart';
 import '../common/heading_text.dart';
-import '../common/login_btn.dart';
 import '../common/social_icons.dart';
 import '../common/subheading.dart';
 import '../login/dont_have_an_accnt.dart';
@@ -64,6 +60,11 @@ class _SignUpPageContainerState extends State<StatefulWidget>
   @override
   void dispose() {
     _controller.dispose();
+    // Dispose of TextEditingController
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+
     super.dispose();
   }
 
@@ -150,100 +151,7 @@ class _SignUpPageContainerState extends State<StatefulWidget>
               child: Form(
                 // autovalidateMode: AutovalidateMode.onUserInte
                 key: _key,
-                child: Column(
-                  children: [
-                    FadeTransition(
-                      opacity: _textFieldAnimation,
-                      child: Expanded(
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value == null ||
-                                value.isEmpty ||
-                                !value.contains('@')) {
-                              return 'Please enter a valid email';
-                            }
-                            if (!emailRegex.hasMatch(value)) {
-                              return 'Please enter a valid email';
-                            }
-                            return null;
-                          },
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            filled: true,
-                            fillColor: DColors.textFieldColor,
-                            hintText: DTexts.loginEmailField,
-                            hintStyle: DStyle.textField,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Gap(20),
-                    FadeTransition(
-                      opacity: _textFieldAnimation,
-                      child: Expanded(
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter a password';
-                            }
-                            if (value.length < 6) {
-                              return 'Password must be at least 6 characters';
-                            }
-                            return null;
-                          },
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            filled: true,
-                            fillColor: DColors.textFieldColor,
-                            hintText: DTexts.passwordSignUp,
-                            hintStyle: DStyle.textField,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Gap(20),
-                    FadeTransition(
-                      opacity: _textFieldAnimation,
-                      child: SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value != passwordController.text) {
-                              return 'Passwords do not match';
-                            }
-                            return null;
-                          },
-                          controller: confirmPasswordController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            filled: true,
-                            fillColor: DColors.textFieldColor,
-                            hintText: DTexts.confirmPasswordSignUp,
-                            hintStyle: DStyle.textField,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: SignUpTextFormSection(textFieldAnimation: _textFieldAnimation, emailController: emailController, emailRegex: emailRegex, passwordController: passwordController, confirmPasswordController: confirmPasswordController),
               ),
             ),
             const SignUpRememberMe(),
@@ -289,3 +197,4 @@ class _SignUpPageContainerState extends State<StatefulWidget>
     );
   }
 }
+
