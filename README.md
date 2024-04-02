@@ -7,6 +7,7 @@
 ## ScreenShots
 
 - OnBoarding Screens
+
 <img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/1.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/2.png?raw=true" width ="33%" height="50%">
 
 - Authentications
@@ -19,9 +20,15 @@
 
 - Home Screen And Features
 
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/6.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/7.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/8.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/9.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/10.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/11.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/13.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/12.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/14.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/15.png?raw=true" width ="33%" height="50%">
+
 - Profile Section
 
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/16.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/17.png?raw=true" width ="33%" height="50%">
+
 - Membership Plan
+
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/18.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/19.png?raw=true" width ="33%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/20.png?raw=true" width ="33%" height="50%">
 
 # Brief About App
 
