@@ -6,6 +6,18 @@
 
 ## ScreenShots
 
+- OnBoarding Screens
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/1.png?raw=true" width ="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/2.png?raw=true" width ="50%">
+
+- Authentications
+
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/3.png?raw=true" width ="33%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/4.png?raw=true" width ="33%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/5.png?raw=true" width ="33%">
+
+- Home Screen And Features
+
+- Profile Section
+
+- Membership Plan
 
 # Brief About App
 
