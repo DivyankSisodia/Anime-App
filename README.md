@@ -11,6 +11,13 @@
 
 Parsing require data from website and serve anime with Ads FREE :bangbang:
 
+### Tech Used
+
+- Flutter : For App UI
+- Firebase : For Auth and storing User Data
+- RazorPay : Integrated RazorPay for membership
+- Caching: Cached API data for better user interface 
+
 ### Features
 
 - Popular Animes
@@ -45,4 +52,4 @@ You can leave a star :star: at the top-right corner of this repository.
 
 # Issue
 
-Sorry! But we are not able to able to stream anime videos for anime duw to API shortage, if you find one please contact on `dhruvsisodia13@gmail.com`
+Sorry! But we are not able to able to stream anime videos for anime due to API shortage, if you find one please contact on `dhruvsisodia13@gmail.com`
