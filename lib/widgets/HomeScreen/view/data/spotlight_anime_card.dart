@@ -55,14 +55,14 @@ class SpotlightAnimeCard extends ConsumerWidget {
               color: Colors.blueAccent,
             ),
             height: DHelperFunctions.screenHeight(context) * 0.109,
-            width: DHelperFunctions.screenWidth(context) / 1.5,
+            width: DHelperFunctions.screenWidth(context),
             child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     'Error: $error',
-                    style: DStyle.bottomNavbarText,
+                    style: DStyle.smalllightbuttonText,
                   ),
                   const Icon(
                     Icons.error,

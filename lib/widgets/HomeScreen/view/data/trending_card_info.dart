@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../controller/Home Page/api_data_controller.dart';
 import '../../../../screen/detail_page/trending_anime_detail_page.dart';
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/style.dart';
 import '../../../../utils/helper/helper_functions.dart';
 import '../../common/anime_card.dart';
 import '../../common/loading_effect.dart';
@@ -34,8 +35,23 @@ class TrendingAnimeCard extends ConsumerWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => TrendingOrPopularAnimeDetailScreen(anime: anime),
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 900),
+                          reverseTransitionDuration:
+                              const Duration(milliseconds: 600),
+                          opaque: false,
+                          pageBuilder:
+                              (context, animation, secondaryanimation) {
+                            animation = CurvedAnimation(
+                              parent: animation,
+                              curve: Curves.easeInOutCubic,
+                            );
+                            return FadeTransition(
+                              opacity: animation,
+                              child: TrendingOrPopularAnimeDetailScreen(
+                                  anime: anime),
+                            );
+                          },
                         ),
                       );
                     },
@@ -46,7 +62,30 @@ class TrendingAnimeCard extends ConsumerWidget {
             );
           },
           loading: () => const LoadingEffect(),
-          error: (error, stackTrace) => Text('Error: $error'),
+          error: (error, stackTrace) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blueAccent,
+            ),
+            height: DHelperFunctions.screenHeight(context) * 0.109,
+            width: DHelperFunctions.screenWidth(context),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'Error: $error',
+                    style: DStyle.smalllightbuttonText,
+                  ),
+                  const Icon(
+                    Icons.error,
+                    color: Colors.white,
+                    size: 30,
+                  )
+                ],
+              ),
+            ),
+          ),
         );
       },
     );

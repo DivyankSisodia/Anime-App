@@ -48,6 +48,7 @@ class AnimeServices extends ConsumerWidget {
                   viewAllHeading(),
                   Gap(10),
                   PopularAnimeCard(), // For top upcoming anime
+                  Gap(50),
                 ],
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:anime_app/screen/Premium/premium_screen.dart';
 import 'package:anime_app/utils/helper/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -129,10 +130,20 @@ class HomeBanner extends StatelessWidget {
                 color: DColors.lightColor,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Center(
-                child: Text(
-                  DTexts.play,
-                  style: DStyle.mediumbuttonText,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const PremiumScreen()),
+                    ),
+                  );
+                },
+                child: const Center(
+                  child: Text(
+                    DTexts.play,
+                    style: DStyle.mediumbuttonText,
+                  ),
                 ),
               ),
             ),
