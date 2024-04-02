@@ -1,8 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously, avoid_print
 
-import 'package:anime_app/bottom_navbar.dart';
-import 'package:anime_app/widgets/auth/isRegister.dart';
+import 'package:anime_app/widgets/auth/common/isRegister.dart';
+import 'package:anime_app/widgets/auth/common/login_btn.dart';
 import 'package:anime_app/widgets/auth/login/forgot_password.dart';
+import 'package:anime_app/widgets/auth/login/login_form_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -86,10 +87,25 @@ class _LoginPageContainerState extends State<LoginPageContainer>
           );
 
           // Navigate to the home screen on successful login
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) =>const  Authpage(),
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 900),
+              reverseTransitionDuration: const Duration(milliseconds: 600),
+              opaque: false,
+              pageBuilder: (context, animation, secondaryanimation) {
+                animation = CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.decelerate,
+                );
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1, 0),
+                    end: const Offset(0, 0),
+                  ).animate(animation),
+                  child: const Authpage(),
+                );
+              },
             ),
           );
         } on FirebaseAuthException catch (e) {
@@ -141,108 +157,28 @@ class _LoginPageContainerState extends State<LoginPageContainer>
             const Gap(60),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Form(
-                // autovalidateMode: AutovalidateMode.onUserInteraction,
-                key: _formkey,
-                child: Column(
-                  children: [
-                    FadeTransition(
-                      opacity: _textFieldAnimation,
-                      child: SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter an email';
-                            }
-                            if (!emailRegex.hasMatch(value)) {
-                              return 'Please enter a valid email';
-                            }
-                            return null;
-                          },
-                          controller: emailController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            filled: true,
-                            fillColor: DColors.textFieldColor,
-                            hintText: DTexts.loginEmailField,
-                            hintStyle: DStyle.textField,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Gap(20),
-                    FadeTransition(
-                      opacity: _textFieldAnimation,
-                      child: SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: TextFormField(
-                          validator: (value) {
-                            if (value == null) {
-                              return 'Please enter a password';
-                            }
-                            if (value.length < 6) {
-                              return 'Password must be at least 6 characters long';
-                            }
-                            return null;
-                          },
-                          controller: passwordController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 20),
-                            filled: true,
-                            fillColor: DColors.textFieldColor,
-                            hintText: DTexts.loginPassword,
-                            hintStyle: DStyle.textField,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              child: LoginTextFormFieldSection(
+                  formkey: _formkey,
+                  textFieldAnimation: _textFieldAnimation,
+                  emailController: emailController,
+                  emailRegex: emailRegex,
+                  passwordController: passwordController),
             ),
             const ForgotPasswordOrRememberMe(),
             const Gap(30),
-            SizedBox(
-              height: 50,
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: ElevatedButton(
-                onPressed: () {
-                  {
-                    if (_formkey.currentState!.validate()) {
-                      setState(
-                        () {
-                          email = emailController.text;
-                          password = passwordController.text;
-                        },
-                      );
-                    }
-                    userLogin();
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: DColors.lightColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  DTexts.loginButtonText,
-                  style: DStyle.smallboldlightbuttonText,
-                ),
-              ),
+            GestureDetector(
+              child: const AuthButton(buttonText: DTexts.loginButtonText),
+              onTap: () {
+                if (_formkey.currentState!.validate()) {
+                  setState(
+                    () {
+                      email = emailController.text;
+                      password = passwordController.text;
+                    },
+                  );
+                }
+                userLogin();
+              },
             ),
             const Gap(8),
             const DontHaveAnAccount(text: DTexts.or),
