@@ -11,7 +11,12 @@
 
 - Authentications
 
-<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/3.png?raw=true" width ="30%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/4.png?raw=true" width ="30%" height="50%"><img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/5.png?raw=true" width ="30%" height="50%">
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/3.png?raw=true" width ="30%" height="50%">
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/4.png?raw=true" width ="30%" height="50%">
+<img src="https://github.com/DivyankSisodia/Anime-App/blob/main/assets/screenshots/5.png?raw=true" width ="30%" height="50%">
+
+<br/><br/><br/>
+
 
 - Home Screen And Features
 
